@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/images/body4.png">
+    <title>Gallery | Leninn</title>
+
+    <!-- import font awwsome -->
+    <link rel="stylesheet" href="./lib/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="./lib/fontawesome/css/brands.css">
+    <link rel="stylesheet" href="./lib/fontawesome/css/solid.css">
+
+    <!-- import boostrap -->
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+
+    <!-- import styles.css -->
+    <link rel="stylesheet" href="./assets/css/styles.css">
+
+    <!-- import products.css -->
+    <link rel="stylesheet" href="./assets/css/products.css">
+</head>
+
+<body>
+    <!-- === header./start === -->
+    <div class="header">
+      <div class="container">
+        <div class="header-main">
+          <div class="logo">
+            <a href="/">
+              <img src="./assets/images/logo.png" alt="leninn">
+            </a>
+          </div>
+          <ul class="menu">
+            <li><a href="/products.html">sản phẩm</a>
+              <!-- sub-menu -->
+              <ul class="sub-menu">
+                <li>hat</li>
+                <li>tee shirt</li>
+                <li>denim shirts</li>
+                <li>jacket</li>
+                <li>hoodie</li>
+                <li>blazer</li>
+                <li>pants</li>
+                <li>jeans</li>
+                <li>shorts</li>
+                <li>deck</li>
+              </ul>
+            </li>
+            <li><a href="/sale.html">sale</a></li>
+            <li><a href="/gallery.html">thư viện</a></li>
+            <li><a href="#">giới thiệu</a></li>
+          </ul>
+          <div class="icon">
+            <div class="search">
+              <img src="./assets/images/search.svg" alt="">
+            </div>
+            <div class="user">
+              <img src="./assets/images/user.svg" alt="">
+            </div>
+            <div class="cart-shopping">
+              <a href="./cart.html">
+                <img src="./assets/images/cart.svg" alt="">
+              </a>
+              <span class="cart-quantity">0</span>
+            </div>
+  
+            <form class="search-bar">
+              <input type="text" class="input-search" placeholder="TÌM KIẾM">
+              <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+          </div>
+  
+  
+          <div class="icon-mobile">
+            <div class="search-mobile">
+              <img src="./assets/images/search.svg" alt="">
+            </div>
+            <div class="cart-shopping">
+              <a href="./cart.html">
+                <img src="./assets/images/cart.svg" alt="">
+              </a>
+              <span class="cart-quantity">0</span>
+            </div>
+            <div class="menu-mobile">
+              <svg viewBox="0 0 60 32" width="32" height="32" fill="#ffffff">
+                <rect width="60" height="3" rx="5"></rect>
+                <rect y="16" width="60" height="3" rx="5"></rect>
+                <rect y="32" width="60" height="3" rx="5"></rect>
+              </svg>
+            </div>
+            <form class="search-bar-mobile">
+              <input type="text" class="input-search" placeholder="TÌM KIẾM">
+              <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+          </div>
+          <!-- login -->
+          <div class="login-main">
+            <div class="popup-login">
+              <div class="button-login">
+                <div class="sign">
+                  <div class="btn-sign active">Đăng nhập</div>
+                  <div class="btn-sign">Đăng ký</div>
+                </div>
+                <div class="close"><i class="fa-solid fa-xmark"></i></div>
+              </div>
+              <hr>
+              <form class="form-login active">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-12 col-sm-12 col-md-6">
+                      <div class="login-text">
+                        <div class="text">Email</div>
+                        <input class="input-login" type="text" name="username" placeholder="...">
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                      <div class="login-pass">
+                        <div class="text">Mật khẩu
+                        </div>
+                        <input class="input-login" type="password" name="password" placeholder="...">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="remember">
+                  <label>
+                    <input class="input-remember" type="checkbox" name="remember">
+                    Ghi nhớ tài khoản
+                  </label>
+                  <a href="#">Quên mật khẩu</a>
+                </div>
+                <div class="login-btn">
+                  <button>đăng nhập</button>
+                </div>
+                <div class="login-link">
+                  <div class="container">
+                    <div class="row">
+                      <p>Đăng nhập bằng tài khoản khác</p>
+                      <div class="col-12 col-sm-12 col-md-6 col-mobile">
+                        <div class="btn-login-fb">
+                          <button>
+                            <img src="./assets/images/fb-login-link.svg" alt="">
+                            Đăng nhập bằng Facebook</button>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-12 col-md-6">
+                        <div class="btn-login-gg">
+                          <button>
+                            <img src="./assets/images/gg-login-link.svg" alt="">
+                            Đăng nhập bằng Google</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+  
+              <form class="form-login">
+                <div class="container">
+                  <div class="row nav-login-form">
+                    <div class="col-12 col-sm-12 col-md-6">
+                      <div class="login-text">
+                        <div class="text">Họ và Tên</div>
+                        <input class="input-login" type="text" name="username" placeholder="...">
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                      <div class="login-text">
+                        <div class="text">Email</div>
+                        <input class="input-login" type="text" name="username" placeholder="...">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-sm-12 col-md-6">
+                      <div class="login-pass">
+                        <div class="text">Mật khẩu
+                        </div>
+                        <input class="input-login" type="password" name="password" placeholder="...">
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6">
+                      <div class="login-pass">
+                        <div class="text">Xác nhận mật khẩu
+                        </div>
+                        <input class="input-login" type="password" name="password" placeholder="...">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="remember">
+                  <label>
+                    <input class="input-remember" type="checkbox" name="remember">
+                    Tôi đồng ý với Chính sách bảo mật và Chính sách đổi trả của leninn Skateshop
+                  </label>
+                </div>
+                <div class="login-btn">
+                  <button>đăng ký</button>
+                </div>
+              </form>
+            </div>
+          </div>
+  
+          <!-- menu mobile -->
+          <div class="popup-menu-mobile">
+            <ul class="wrap-menu-mobile">
+              <li class="products-menu-mobile"><a href="/products.html">sản phẩm</a>
+                <i class="fa-solid fa-caret-down"></i>
+                <!-- sub-menu mobile -->
+                <ul class="sub-menu-mobile">
+                  <li>hat</li>
+                  <li>tee shirt</li>
+                  <li>denim shirts</li>
+                  <li>jacket</li>
+                  <li>hoodie</li>
+                  <li>blazer</li>
+                  <li>pants</li>
+                  <li>jeans</li>
+                  <li>shorts</li>
+                  <li>deck</li>
+                </ul>
+              </li>
+              <li><a href="/sale.html">sale</a></li>
+              <li><a href="/gallery.html">thư viện</a></li>
+              <li><a href="#">giới thiệu</a></li>
+              <li class="login-mobile">tài khoản</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- === header./end === -->
+
+
+    <!-- === body-main./start === -->
+    <div class="body-main">
+        <div class="container">
+            <div class="body-product">
+
+            </div>
+        </div>
+    </div>
+    <!-- === body-main./end === -->
+
+
+    <!-- === footer./start === -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-12">
+                    <div class="item">
+                        <div class="wrap-footer">
+                            <p>
+                                <i class="fa-solid fa-caret-right"></i>
+                                <a href="#">Chính sách bảo mật</a>
+                            </p>
+                            <p>
+                                <i class="fa-solid fa-caret-right"></i>
+                                <a href="#">Chính sách đổi trả</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-12">
+                    <div class="item">
+                        <div class="address">
+                            <p><span>Địa chỉ 1:</span> 110 Nguyễn Hy Quang, Đống Đa, Hà Nội</p>
+                            <p><span>Địa chỉ 2:</span> 40A Ấu Triệu, Hoàn Kiếm, Hà Nội</p>
+                            <p><span>Hotline:</span> 090 222 6803</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 col-12">
+                    <div class="item">
+                        <div class="follow">
+                            <p>Theo dõi chúng tôi trên mạng xã hội</p>
+                            <a href="https://www.facebook.com/leninnskateshop/" target="_blank">
+                                <i class="fa-brands fa-square-facebook"></i>
+                            </a>
+                            <a href="https://www.instagram.com/leninn.skateshop/" target="_blank">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="nav-footer">
+            <p>© 2021 Lennin. Đã đăng ký Bản quyền</p>
+        </div>
+    </div>
+    <!-- === footer./end === -->
+
+
+
+
+
+    <!-- import jquery -->
+    <script src="./lib/jquery-3.7.0.min.js"></script>
+    <!-- import boostrap -->
+    <script src="./lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- import main.js -->
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

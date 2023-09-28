@@ -1,0 +1,268 @@
+{
+    "lenin": [
+      {
+        "id": 1,
+        "title": "LENINN CREAM BUCKET HAT",
+        "type": "hat",
+        "price": 290000,
+        "img": "./assets/images/lennin-hat01.jpg",
+        "description1": "◼️ Vải đã được qua xử lý stone wash nhẹ, tạo cảm giác cũ kĩ có chủ đích.",
+        "description2": "◼️ Logo thêu nổi phía trước và chạy chỉ trang trí trên phần đỉnh của mũ.",
+        "description3": "◼️ 100% Cotton.",
+        "description4": ""
+      },
+      {
+        "id": 2,
+        "title": "COW FARM LENINN TEE",
+        "type": "tee",
+        "price": 550000,
+        "img": "./assets/images/COW FARM LENINN TEE.jpg",
+        "description1": "◾️ Dệt từ len lông cừu siêu mỏng,thích hợp cho điều kiện thời tiết mùa hè, sợi len co giãn linh hoạt thoáng khí, với bo cổ và hình in được dệt liền khối. ",
+        "description2": "◾️ không sấy tránh co rút sợi, khi phơi nên gấp ngang áo ko móc kéo tránh áo bị biến dạng. ",
+        "description3": "◾️ 100% cotton",
+        "description4": ""
+      },
+      {
+        "id": 3,
+        "title": "RAGLAN BLAZER",
+        "type": "blazer",
+        "price": 950000,
+        "img": "./assets/images/RAGLAN BLAZER.jpg",
+        "description1": "◾️ Blazer cách tân với tay áo ghép chéo , tạo dáng suông thẳng ko cầu vai.",
+        "description2": "◾️ Cổ áo giữ nguyên theo dáng truyền thống, cúc và các khuyết thùa chỉ ba màu khác nhau.",
+        "description3": "◾️ Ba túi trang trí phía trước kèm lót satin ghép kín toàn bộ mặt trong của áo",
+        "description4": ""
+      },
+      {
+        "id": 4,
+        "title": "BLUE OVERSIZED WASHED DENIM SHIRT",
+        "type": "shirt",
+        "price": 650000,
+        "img": "./assets/images/BLUE OVERSIZED WASHED DENIM SHIRT.jpg",
+        "description1": "◾️ Sơmi chất liệu denim, giặt bạc thành phẩm sau khi may hoàn thiện.",
+        "description2": "◾️ Chất liệu vải dày và mềm mại, đính cúc kim loại có logo trên tất cả các vị trí thân trước và bo tay.",
+        "description3": "◾️ Dáng Oversize",
+        "description4": ""
+      },
+      {
+        "id": 5,
+        "title": "HOLE PUNCHER BLACK DENIM SHORT",
+        "type": "short",
+        "price": 650000,
+        "img": "./assets/images/4-HOLE PUNCHER BLACK DENIM SHORT.jpg",
+        "description1": "Non-stretch denim shorts. Fading throughout.",
+        "description2": "",
+        "description3": "100% cotton.",
+        "description4": ""
+      },
+      {
+        "id": 6,
+        "title": "LENINN STONE WASHED CAP",
+        "type": "hat",
+        "price": 320000,
+        "img": "./assets/images/lennin-02hat.jpg",
+        "description1": "◼️ 100% cotton tự nhiên, vải đã được qua xử lý stone wash nhẹ, tạo cảm giác cũ kĩ có chủ đích.",
+        "description2": "◼️ Mũ thêu typo nét dày nổi ở phía trước và sau, lót mềm phía trong.",
+        "description3": "◼️ Mũ có khoá tăng giảm độ rộng phía sau.",
+        "description4": ""
+      },
+      {
+        "id": 7,
+        "title": "M&M BLACK DENIM JACKET",
+        "type": "jacket",
+        "price": 1250000,
+        "img": "./assets/images/M&M BLACK DENIM JACKET.jpg",
+        "description1": "Non-stretch denim jacket. Printed graphics, fading and whiskering throughout.",
+        "description2": "Spread collar,Button closure,Removable padded shoulders,Logo printed inside,Flap pockets and welt pockets,Single-button barrel cuffs,Button tabs at back hem,Leather logo patch at sleeve,Logo-engraved silver-tone hardware",
+        "description3": "100% cotton.",
+        "description4": ""
+      },
+      {
+        "id": 8,
+        "title": "HOLE PUNCHER BLUE JEANS",
+        "type": "jeans",
+        "price": 950000,
+        "img": "./assets/images/4-HOLE PUNCHER BLUE JEANS.jpg",
+        "description1": "Non-stretch denim jeans. Fading, distressing effect throughout.",
+        "description2": "Belt loops, Adjustable mini cinch belts at waist, Zip-fly, Five-pocket styling, Logo graphic pattern printed at outseams, Contrast stitching in tan",
+        "description3": "Body: 100% cotton.",
+        "description4": ""
+      },
+      {
+        "id": 9,
+        "title": "AMBER THIS IS SKATEBOARDING HOODIE",
+        "type": "hoodie",
+        "price": 650000,
+        "img": "./assets/images/AMBER THIS IS SKATEBOARDING HOODIE.jpg",
+        "description1": "◾️ Định lượng 380gsm siêu dày, tạo form dáng và giữ nhiệt tốt, mặt bông bên trong đã được xử lý giặt enzyme tránh ra mùn vải khi sử dụng.",
+        "description2": "◾️ In lưới chuyển nhiệt mix cùng công nghệ ép phồng tạo hiệu ứng xếp lớp nhẹ, hình in sắc nét, khó bong tróc, gãy nứt.",
+        "description3": "◾️ Oversized fit",
+        "description4": ""
+      },
+      {
+        "id": 10,
+        "title": "BLACK CORDUROY STRETCH PANTS",
+        "type": "pants",
+        "price": 490000,
+        "img": "./assets/images/BLACK CORDUROY STRETCH PANTS.png",
+        "description1": "◾️ Sử dụng vải nhung tăm pinwale, co giãn nhẹ, tạo dáng suông thẳng mềm mại, thích nghi tốt với mọi outfit từ cơ bản cho tới phức tap.",
+        "description2": "◾️ Enzyme wash giúp vải xốp hơn, chống co ngót sau khi giặt và sử dụng.",
+        "description3": "◾️ Dây rút đi kèm giúp tăng chỉnh linh hoạt vòng eo.",
+        "description4": ""
+      },
+      {
+        "id": 11,
+        "title": "HOLE PUNCHER BLUE DENIM SHIRT",
+        "type": "shirt",
+        "price": 950000,
+        "img": "./assets/images/HOLE PUNCHER BLUE DENIM SHIRT.jpg",
+        "description1": "Non-stretch denim shirt. Fading throughout.",
+        "description2": "Spread collar, Button closure, 4-patch pockets with graphic embroidered by hand, Adjustable single-button barrel cuffs, Logo laser carving on back collar, Box pleat at back yoke, Shirttail hem, Contrast stitching in tan",
+        "description3": "100% cotton.",
+        "description4": ""
+      },
+      {
+        "id": 12,
+        "title": "TIGER STRIPPED LENINN TEE",
+        "type": "tee",
+        "price": 550000,
+        "img": "./assets/images/TIGER STRIPPED LENINN TEE.jpg",
+        "description1": "◾️ Dệt từ len lông cừu siêu mỏng,thích hợp cho điều kiện thời tiết mùa hè, sợi len co giãn linh hoạt thoáng khí, với bo cổ và hình in được dệt liền khối. ",
+        "description2": "◾️ không sấy tránh co rút sợi, khi phơi nên gấp ngang áo ko móc kéo tránh áo bị biến dạng",
+        "description3": "◾️ 100% cotton",
+        "description4": ""
+      },
+      {
+        "id": 13,
+        "title": "BLACK OVERSIZED WASHED DENIM SHORT",
+        "type": "short",
+        "price": 520000,
+        "img": "./assets/images/BLACK OVERSIZED WASHED DENIM SHORT.jpg",
+        "description1": "◾️ Quần short chất liệu denim, giặt bạc thành phầm sau khi may hoàn thiện. ",
+        "description2": "◾️ Logo in lưới thủ công phía sau túi trái ",
+        "description3": "◾️ Form oversized ",
+        "description4": ""
+      },
+      {
+        "id": 14,
+        "title": "DUO BEIGE WORKWEAR JACKET",
+        "type": "jacket",
+        "price": 1050000,
+        "img": "./assets/images/DUO BEIGE WORKWEAR JACKET.jpg",
+        "description1": "Stretch cotton twill workwear jacket.",
+        "description2": "Spread collar, Button closure, Logo embroidered at chest and back, Welt pockets, Adjustable button tab at cuffs and hem.",
+        "description3": "97% cotton, 3% elastane.",
+        "description4": ""
+      },
+      {
+        "id": 15,
+        "title": "CLASSIC STRIPED OVERSIZED BLAZER",
+        "type": "blazer",
+        "price": 4500000,
+        "img": "./assets/images/CLASSIC STRIPED OVERSIZED BLAZER.jpg",
+        "description1": "Wool twill blazer. Stripes throughout.",
+        "description2": "Peaked lapel collar, Double-breasted button closure, Welt pocket and flap pockets, Four-button surgeon cuffs, Double vent at back hem, Graphics printed satin , ",
+        "description3": "Body: 100% wool. Lining: 100% silk",
+        "description4": ""
+      },
+      {
+        "id": 16,
+        "title": "HOLE PUNCHER BLACK JEANS",
+        "type": "jeans",
+        "price": 950000,
+        "img": "./assets/images/HOLE PUNCHER BLACK JEANS.jpg",
+        "description1": "Non-stretch denim jeans. Fading, distressing effect throughout.",
+        "description2": "Belt loops, Adjustable mini cinch belts at waist, Zip-fly, Five-pocket styling, Logo graphic pattern printed at outseams, Contrast stitching in tan",
+        "description3": "Body: 100% cotton.",
+        "description4": ""
+      },
+      {
+        "id": 17,
+        "title": "CLASSIC STRIPED BLACK TAILORED PANTS",
+        "type": "pants",
+        "price": 1250000,
+        "img": "./assets/images/HOLE PUNCHER BLACK TAILORED PANTS.jpg",
+        "description1": "Wool twill flared pants. Stripes throughout.",
+        "description2": "Belt loops, Adjustable mini cinch belts at waist, Zip-fly, Pleats at front",
+        "description3": "Body: 100% wool",
+        "description4": ""
+      },
+      {
+        "id": 18,
+        "title": "CREAM GRADIENT EMBROIDRED HOODIE",
+        "type": "hoodie",
+        "price": 680000,
+        "img": "./assets/images/CREAM GRADIENT EMBROIDRED HOODIE.jpg",
+        "description1": "◾️ Tuft Stitch 3D logo mặt trước và sau, hình in nổi khối, tạo hiệu ứng lông bàn chải khi nhìn cận. Các chân thêu cố định, bền chắc, không bong tróc, bay màu khi giặt và sử dụng.",
+        "description2": "◾️ Định lượng 420gsm siêu dày, tạo form dáng và giữ nhiệt tốt, mặt bông bên trong đã được xử lý giặt enzyme ngăn chặn mùn vải khi mặc.",
+        "description3": "◾️ Oversized fit",
+        "description4": ""
+      },
+      {
+        "id": 19,
+        "title": "DUO NAVY SHORT SLEEVE SHIRT",
+        "type": "shirt",
+        "price": 650000,
+        "img": "./assets/images/DUO NAVY SHORT SLEEVE SHIRT.jpg",
+        "description1": "◾️ Polyester and organic cotton-blend shirt.",
+        "description2": "◾️ Spread collar, Press-stud closure at front, Logo-engraved black-tone hardware, Graphic printed at front, Logo embroidered at back",
+        "description3": "◾️ Fabric: 51% polyester, 49% organic cotton.",
+        "description4": ""
+      },
+      {
+        "id": 20,
+        "title": "STAR DECK",
+        "type": "deck",
+        "price": 780000,
+        "img": "./assets/images/STAR DECK.jpg",
+        "description1": "◾️ Ngoài dòng Premium các bạn đã trải nghiệm với công nghệ carbon cao cấp, Leninn nay cho ra mắt line sản phẩm mới với công nghệ rút gọn nhưng không cắt giảm chất lượng.",
+        "description2": "◾️ Có tới hai lớp fiberglass (sợi thuỷ tinh) tăng độ đàn hồi, dẻo dai, kéo dài tuổi thọ mặt ván gấp nhiều lần so với các phiên bản cũ,giúp chống chịu lực siêu cao, giảm trọng lượng cho ván nhẹ hơn, gia tăng lực pop.",
+        "description3": "◾️ Mặt dưới đã được top coat một lớp wax mỏng, hỗ trợ cho kĩ thuật slide được dễ dàng hơn",
+        "description4": "◾️ Keo epoxy / ép lạnh"
+      },
+      {
+        "id": 21,
+        "title": "PARADOL DECK",
+        "type": "deck",
+        "price": 780000,
+        "img": "./assets/images/PARADOL DECK.jpg",
+        "description1": "◾️ Ngoài dòng Premium các bạn đã trải nghiệm với công nghệ carbon cao cấp, Leninn nay cho ra mắt line sản phẩm mới với công nghệ rút gọn nhưng không cắt giảm chất lượng.",
+        "description2": "◾️ Có tới hai lớp fiberglass (sợi thuỷ tinh) tăng độ đàn hồi, dẻo dai, kéo dài tuổi thọ mặt ván gấp nhiều lần so với các phiên bản cũ,giúp chống chịu lực siêu cao, giảm trọng lượng cho ván nhẹ hơn, gia tăng lực pop.",
+        "description3": "◾️ Mặt dưới đã được top coat một lớp wax mỏng, hỗ trợ cho kĩ thuật slide được dễ dàng hơn",
+        "description4": "◾️ Keo epoxy / ép lạnh"
+      },
+      {
+        "id": 22,
+        "title": "LENINN SKATEBAG",
+        "type": "",
+        "price": 150000,
+        "img": "./assets/images/LENINN SKATEBAG.png",
+        "description1": "",
+        "description2": "",
+        "description3": "",
+        "description4": ""
+      },
+      {
+        "id": 23,
+        "title": "BLACK DUCK DUCK CUP",
+        "type": "",
+        "price": 250000,
+        "img": "./assets/images/BLACK DUCK DUCK CUP.jpg",
+        "description1": "◾️ Chất liệu: Sứ.",
+        "description2": "◾️ Cốc sứ có quai tròn, chất liệu sứ cao cấp dày và chắc chắn",
+        "description3": "◾️ In chuyển nhiệt, không bong tróc và an toàn khi sử dụng",
+        "description4": "◾️ Dung tích: 450ml."
+      },
+      {
+        "id": 24,
+        "title": "RED MINDS CUP",
+        "type": "",
+        "price": 250000,
+        "img": "./assets/images/RED MINDS CUP.jpg",
+        "description1": "◾️ 330ml",
+        "description2": "◾️ 100% Ceramic",
+        "description3": "◾️ Be careful not to break it!",
+        "description4": ""
+      }
+    ]
+  }
