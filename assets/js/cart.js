@@ -7,7 +7,7 @@ let callOneTime = false;
 const getData = async () => {
   const urlParams = new URLSearchParams(window.location.search);
   // let currentValueInput = 1;
-
+document.querySelector('.cart-quantity').innerHTML = dataParse.length;
   console.log("4444444", dataParse[0]);
 
   for (let i = 0; i < dataParse.length; i++) {
@@ -20,11 +20,16 @@ const getData = async () => {
 
 
 
-    console.log("?????????total", totalPrice);
+    // console.log("?????????total", totalPrice);
     let total = document.querySelector(".cart-mn span:first-child");
     let totalAll = document.querySelector(".cart-mn-all span:first-child");
-    total.textContent = totalPrice;
-    totalAll.textContent = totalPrice;
+    let formattedPrice = new Intl.NumberFormat('vi-VN', {
+      style: 'currency',
+      currency: 'VND'
+    }).format(totalPrice);
+    total.textContent = formattedPrice;
+    console.log(totalPrice);
+    totalAll.textContent = formattedPrice;
 
     response.data.numberItems = dataParse[i].numberProduct;
     response.data.size = dataParse[i].size;
@@ -88,41 +93,57 @@ const products = (data) => {
 
 
 
-    // const addNumbers = () => {
-    //   const minus = document.querySelectorAll('.nav-detail-minus');
-    //   const plus = document.querySelectorAll('.nav-detail-plus');
-    //   const numbersInput = document.querySelectorAll('.detail-input');
-    //   console.log(plus);
-    //   plus.forEach((item) => {
-    //     item.addEventListener('click', () => {
-    //       // Tăng giá trị số trong input
-    //       const currentValue = parseInt(numbersInput.value);
-    //       numbersInput.value = currentValue + 1;
-    //       console.log("?????", typeof numbersInput.value)
-    //       currentValueInput = numbersInput.value
-    //       console.log('inputValue', currentValueInput)
+    const addNumbers = () => {
+      const minus = document.querySelectorAll('.nav-detail-minus');
+      const plus = document.querySelectorAll('.nav-detail-plus');
+      const numbersInput = document.querySelectorAll('.detail-input');
+      console.log(plus);
+      plus.forEach((item, index) => {
+        item.addEventListener('click', () => {
+          // Tăng giá trị số trong input
+          // const currentValue = parseInt(numbersInput.value);
+          // numbersInput.value = currentValue + 1;
+          // console.log("?????", typeof numbersInput.value)
+          // currentValueInput = numbersInput.value
+          // console.log('inputValue', currentValueInput)
+          const currentValue = parseInt(numbersInput[index].value) || 0;
+          numbersInput[index].value = currentValue + 1;
+          console.log('inputValue', numbersInput[index].value);
+          // document.querySelector('.cart-price').innerHTML = currentValue*;
+          // let currentPrice;
+          // const currentIndex = index
+          // console.log('currentIndex', currentIndex);
+          // for (item of listCartItems) {
+          //   if (currentIndex === index) {
+          //     currentPrice = item.price
+          //     console.log('currentPricesdgsdfsdsd', currentPrice)
+          //   }
+          //   console.log('index', index);
+          // }
+          // console.log('currentPrice', currentPrice*currentValue);
 
-    //     });
-    //   })
+        });
+
+      })
 
 
-    //   minus.forEach((item) => {
-    //     item.addEventListener('click', () => {
-    //       // Giảm giá trị số trong input
-    //       const currentValue = parseInt(numbersInput.value);
-    //       if (currentValue > 1) numbersInput.value = currentValue - 1;
-    //       currentValueInput = numbersInput.value
-    //       console.log('minus', currentValueInput)
-    //     });
-    //   })
+      minus.forEach((item) => {
+        item.addEventListener('click', () => {
+          // Giảm giá trị số trong input
+          const currentValue = parseInt(numbersInput.value);
+          if (currentValue > 1) numbersInput.value = currentValue - 1;
+          currentValueInput = numbersInput.value
+          console.log('minus', currentValueInput)
+        });
+      })
 
-    // };
-    // addNumbers();
+    };
+    addNumbers();
 
 
 
     const removeItem = document.querySelectorAll(".cart-close");
-    removeItem.forEach((item,index) => {
+    removeItem.forEach((item, index) => {
       item.addEventListener("click", () => {
         const currentIndex = index;
         const lasteredArr = dataParse
@@ -135,7 +156,7 @@ const products = (data) => {
         //     console.log("dfsdsf")
         //   }
         // }
-        for(item of lasteredArr){
+        for (item of lasteredArr) {
           if (currentIndex === index) {
             lasteredArr.splice(index, 1)
             console.log("dfsdsf")
@@ -146,7 +167,7 @@ const products = (data) => {
         products(lasteredArr)
         location.reload();
       })
-     })
+    })
 
 
   });
@@ -168,7 +189,3 @@ submit.addEventListener("click", () => {
   localStorage.clear();
   window.location.href = "index.html";
 });
-
-
-
-document.querySelector('.cart-quantity').innerHTML = listCartItems.length;

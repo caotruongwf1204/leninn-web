@@ -5,13 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const API_DETAI = `http://localhost:3000/lenin/${id}`;
 
-
+  const getData = localStorage.getItem('products');
+    console.log("OOOOOOOOOOOOO", id)
+    const dataJson = JSON.parse(getData);
 
   const getApi = async (URL_API) => {
     const response = await axios.get(URL_API);
 
     showDetailJs(response.data);
-
+    document.querySelector('.cart-quantity').innerHTML = dataJson.length;
   }
   getApi(API_DETAI);
 
@@ -62,13 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const addToCart = document.querySelector('.detail-add');
   addToCart.addEventListener('click', () => {
-
-    const getData = localStorage.getItem('products');
-    console.log("OOOOOOOOOOOOO", id)
-    const dataJson = JSON.parse(getData);
     console.log("dataJson", dataJson);
     addToLocalStorage(id, dataJson, currentValueInput, "M")
     console.log("getData", localStorage.getItem('products'))
+    document.querySelector('.cart-quantity').innerHTML = dataJson.length;
   })
 
 
@@ -137,9 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const btnCart = document.querySelector('.detail-buy');
   btnCart.addEventListener('click', () => {
-    const getData = localStorage.getItem('products');
-    console.log("OOOOOOOOOOOOO", id)
-    const dataJson = JSON.parse(getData);
     console.log("dataJson", dataJson);
     addToLocalStorage(id, dataJson, currentValueInput, "M")
 
@@ -150,3 +146,5 @@ document.addEventListener('DOMContentLoaded', () => {
  
 
 });
+
+document.querySelector('.cart-quantity').innerHTML = listProducts.length;

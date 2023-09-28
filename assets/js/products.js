@@ -1,7 +1,15 @@
 const URL_API = `http://localhost:3000/lenin`;
 let listData = [];
 
+
+const dataStorage = localStorage.getItem("products");
+const dataParse = JSON.parse(dataStorage);
+
+
 const getApi = async (URL_API) => {
+
+  document.querySelector('.cart-quantity').innerHTML = dataParse.length;
+
   const response = await axios.get(URL_API);
   listData = response.data;
   products(response.data);
