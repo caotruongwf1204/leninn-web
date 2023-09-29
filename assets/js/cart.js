@@ -6,8 +6,8 @@ let listCartItems = [];
 
 const getData = async () => {
   const urlParams = new URLSearchParams(window.location.search);
-  // let currentValueInput = 1;
-document.querySelector('.cart-quantity').innerHTML = dataParse.length;
+  let currentValueInput = 1;
+  document.querySelector('.cart-quantity').innerHTML = dataParse.length;
   // console.log("4444444", dataParse[0]);
 
   for (let i = 0; i < dataParse.length; i++) {
@@ -100,40 +100,17 @@ const products = (data) => {
       // console.log(plus);
       plus.forEach((item, index) => {
         item.addEventListener('click', () => {
-          // Tăng giá trị số trong input
-          // const currentValue = parseInt(numbersInput.value);
-          // numbersInput.value = currentValue + 1;
-          // console.log("?????", typeof numbersInput.value)
-          // currentValueInput = numbersInput.value
-          // console.log('inputValue', currentValueInput)
-          const currentValue = parseInt(numbersInput[index].value) || 0;
+          const currentValue = parseInt(numbersInput[index].value) || 1;
           numbersInput[index].value = currentValue + 1;
-          // console.log('inputValue', numbersInput[index].value);
-          // document.querySelector('.cart-price').innerHTML = currentValue*;
-          // let currentPrice;
-          // const currentIndex = index
-          // console.log('currentIndex', currentIndex);
-          // for (item of listCartItems) {
-          //   if (currentIndex === index) {
-          //     currentPrice = item.price
-          //     console.log('currentPricesdgsdfsdsd', currentPrice)
-          //   }
-          //   console.log('index', index);
-          // }
-          // console.log('currentPrice', currentPrice*currentValue);
-
         });
 
       })
 
 
-      minus.forEach((item) => {
+      minus.forEach((item, index) => {
         item.addEventListener('click', () => {
-          // Giảm giá trị số trong input
-          const currentValue = parseInt(numbersInput.value);
-          if (currentValue > 1) numbersInput.value = currentValue - 1;
-          currentValueInput = numbersInput.value
-          // console.log('minus', currentValueInput)
+          const currentValue = parseInt(numbersInput[index].value) || 1;
+          numbersInput[index].value = currentValue - 1;
         });
       })
 
