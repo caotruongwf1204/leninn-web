@@ -11,7 +11,7 @@ document.querySelector('.cart-quantity').innerHTML = dataParse.length;
   // console.log("4444444", dataParse[0]);
 
   for (let i = 0; i < dataParse.length; i++) {
-    console.log("dataStorage: ", dataParse[i].id);
+    // console.log("dataStorage: ", dataParse[i].id);
     const API_DETAIL_CART = `http://localhost:3000/lenin/${dataParse[i].id}`;
     const response = await axios.get(API_DETAIL_CART);
     // console.log("response", typeof response.data.price);
