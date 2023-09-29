@@ -68,7 +68,7 @@ filterAll.addEventListener('click', () => {
 const filterProduct = (queryName, typeName) => {
   const filterBtn = document.querySelector(`${queryName}`);
   filterBtn.addEventListener("click", () => {
-    console.log("////////", typeName);
+    // console.log("////////", typeName);
     filterList(typeName);
   });
 };
@@ -86,22 +86,4 @@ filterProduct("#btn-deck", "deck");
 
 
 
-const filterNavMenu = (queryName, typeName) => {
-  const filterBtn = document.querySelector(`${queryName}`);
-  filterBtn.addEventListener("click", () => {
-    console.log("////////", typeName);
-    filterList(typeName);
-  });
-};
-
-filterNavMenu(".js-hat", "hat");
-filterNavMenu(".js-tee", "tee");
-filterNavMenu(".js-shirt", "shirt");
-filterNavMenu(".js-jacket", "jacket");
-filterNavMenu(".js-hoodie", "hoodie");
-filterNavMenu(".js-blazer", "blazer");
-filterNavMenu(".js-pants", "pants");
-filterNavMenu(".js-jeans", "jeans");
-filterNavMenu(".js-shorts", "short");
-filterNavMenu(".js-deck", "deck");
 

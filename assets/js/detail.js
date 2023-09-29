@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const API_DETAI = `http://localhost:3000/lenin/${id}`;
 
   const getData = localStorage.getItem('products');
-    console.log("OOOOOOOOOOOOO", id)
-    const dataJson = JSON.parse(getData);
+  // console.log("OOOOOOOOOOOOO", id)
+  const dataJson = JSON.parse(getData);
 
   const getApi = async (URL_API) => {
     const response = await axios.get(URL_API);
@@ -64,9 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const addToCart = document.querySelector('.detail-add');
   addToCart.addEventListener('click', () => {
-    console.log("dataJson", dataJson);
+    // console.log("dataJson", dataJson);
     addToLocalStorage(id, dataJson, currentValueInput, "M")
-    console.log("getData", localStorage.getItem('products'))
+    // console.log("getData", localStorage.getItem('products'))
     document.querySelector('.cart-quantity').innerHTML = dataJson.length;
   })
 
@@ -78,8 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("numberItemnumberItem", numberItem);
 
     const listProducts = oldListProd || [];
-    console.log("OOOOOOOOOOOOO", productId)
-    console.log("listProducts", listProducts)
+    // console.log("OOOOOOOOOOOOO", productId)
+    // console.log("listProducts", listProducts)
     const product = {
       "id": productId,
       "numberProduct": numberItem,
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
       listProducts.push(product)
     }
 
-    console.log("existingItem", listProducts)
+    // console.log("existingItem", listProducts)
 
     localStorage.setItem('products', JSON.stringify(listProducts));
 
@@ -117,9 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
       // Tăng giá trị số trong input
       const currentValue = parseInt(numbersInput.value);
       numbersInput.value = currentValue + 1;
-      console.log("?????", typeof numbersInput.value)
+      // console.log("?????", typeof numbersInput.value)
       currentValueInput = numbersInput.value
-      console.log('inputValue', currentValueInput)
+      // console.log('inputValue', currentValueInput)
 
     });
     minus.addEventListener('click', () => {
@@ -128,23 +128,32 @@ document.addEventListener('DOMContentLoaded', () => {
       if (currentValue > 1) numbersInput.value = currentValue - 1;
       currentValueInput = numbersInput.value
 
-      console.log('minus', currentValueInput)
+      // console.log('minus', currentValueInput)
     });
 
   };
   addNumbers();
+
+
+  const parentElement = document.getElementById("size-select");
+  const childElements = parentElement.querySelectorAll("option");
+  childElements.forEach((element) => {
+    console.log(element);
+  });
+
+
+
 
   const btnCart = document.querySelector('.detail-buy');
   btnCart.addEventListener('click', () => {
     console.log("dataJson", dataJson);
     addToLocalStorage(id, dataJson, currentValueInput, "M")
 
-    console.log("getData", localStorage.getItem('products'))
+    // console.log("getData", localStorage.getItem('products'))
     window.location.href = 'cart.html';
   })
 
- 
 
+
+  document.querySelector('.cart-quantity').innerHTML = listProducts.length;
 });
-
-document.querySelector('.cart-quantity').innerHTML = listProducts.length;

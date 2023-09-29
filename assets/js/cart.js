@@ -1,21 +1,21 @@
 const dataStorage = localStorage.getItem("products");
 const dataParse = JSON.parse(dataStorage);
-console.log("getDataLocalstorage", dataParse);
+// console.log("getDataLocalstorage", dataParse);
 let totalPrice = 0;
 let listCartItems = [];
-let callOneTime = false;
+
 const getData = async () => {
   const urlParams = new URLSearchParams(window.location.search);
   // let currentValueInput = 1;
 document.querySelector('.cart-quantity').innerHTML = dataParse.length;
-  console.log("4444444", dataParse[0]);
+  // console.log("4444444", dataParse[0]);
 
   for (let i = 0; i < dataParse.length; i++) {
     console.log("dataStorage: ", dataParse[i].id);
     const API_DETAIL_CART = `http://localhost:3000/lenin/${dataParse[i].id}`;
     const response = await axios.get(API_DETAIL_CART);
-    console.log("response", typeof response.data.price);
-    console.log("response2", typeof parseInt(dataParse[i].numberProduct));
+    // console.log("response", typeof response.data.price);
+    // console.log("response2", typeof parseInt(dataParse[i].numberProduct));
     totalPrice += response.data.price * parseInt(dataParse[i].numberProduct);
 
 
@@ -28,7 +28,7 @@ document.querySelector('.cart-quantity').innerHTML = dataParse.length;
       currency: 'VND'
     }).format(totalPrice);
     total.textContent = formattedPrice;
-    console.log(totalPrice);
+    // console.log(totalPrice);
     totalAll.textContent = formattedPrice;
 
     response.data.numberItems = dataParse[i].numberProduct;
@@ -36,19 +36,19 @@ document.querySelector('.cart-quantity').innerHTML = dataParse.length;
     listCartItems.push(response.data);
   }
 
-  console.log("555555555", listCartItems);
+  // console.log("555555555", listCartItems);
   products(listCartItems);
 };
 
 
-console.log("66666666", listCartItems);
+// console.log("66666666", listCartItems);
 const products = (data) => {
   const cartListing = document.querySelector("#cart-show-js");
   let HTML = ``;
 
   data.forEach((item) => {
-    console.log("item.price", item.price);
-    console.log("item.numberItems", item.numberItems);
+    // console.log("item.price", item.price);
+    // console.log("item.numberItems", item.numberItems);
     const number = item.price * item.numberItems;
     const formattedNumber = number.toLocaleString("vi-VN", {
       style: "currency",
@@ -97,7 +97,7 @@ const products = (data) => {
       const minus = document.querySelectorAll('.nav-detail-minus');
       const plus = document.querySelectorAll('.nav-detail-plus');
       const numbersInput = document.querySelectorAll('.detail-input');
-      console.log(plus);
+      // console.log(plus);
       plus.forEach((item, index) => {
         item.addEventListener('click', () => {
           // Tăng giá trị số trong input
@@ -108,7 +108,7 @@ const products = (data) => {
           // console.log('inputValue', currentValueInput)
           const currentValue = parseInt(numbersInput[index].value) || 0;
           numbersInput[index].value = currentValue + 1;
-          console.log('inputValue', numbersInput[index].value);
+          // console.log('inputValue', numbersInput[index].value);
           // document.querySelector('.cart-price').innerHTML = currentValue*;
           // let currentPrice;
           // const currentIndex = index
@@ -133,7 +133,7 @@ const products = (data) => {
           const currentValue = parseInt(numbersInput.value);
           if (currentValue > 1) numbersInput.value = currentValue - 1;
           currentValueInput = numbersInput.value
-          console.log('minus', currentValueInput)
+          // console.log('minus', currentValueInput)
         });
       })
 
@@ -147,15 +147,9 @@ const products = (data) => {
       item.addEventListener("click", () => {
         const currentIndex = index;
         const lasteredArr = dataParse
-        console.log("Clicked on item at index:", currentIndex);
-        console.log("Data for this item:", lasteredArr[index]);
-        // for (let i = 0; i < dataParse.length; i++) {
-        //   console.log("dfsdsf")
-        //   if (i = index) {
-        //     // dataParse.splice(index, dataParse[index])
-        //     console.log("dfsdsf")
-        //   }
-        // }
+        // console.log("Clicked on item at index:", currentIndex);
+        // console.log("Data for this item:", lasteredArr[index]);
+
         for (item of lasteredArr) {
           if (currentIndex === index) {
             lasteredArr.splice(index, 1)
@@ -173,11 +167,6 @@ const products = (data) => {
   });
 };
 
-// if (callOneTime == false) {
-//   console.log("calling", callOneTime)
-//   callOneTime = true;
-
-// }
 getData();
 
 
@@ -185,7 +174,7 @@ getData();
 
 const submit = document.querySelector(".btn-money");
 submit.addEventListener("click", () => {
-  console.log("??????????");
+  // console.log("??????????");
   localStorage.clear();
   window.location.href = "index.html";
 });
