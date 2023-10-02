@@ -134,28 +134,16 @@ document.addEventListener('DOMContentLoaded', () => {
   tabsLogin();
 
 
-  // producst list
-  const listPro = () => {
-    const producstList = document.querySelectorAll('.btn-list');
-
-    producstList.forEach((button, index) => {
-
-      button.addEventListener('click', () => {
-        producstList.forEach((item) => {
-          item.classList.remove('active-list');
-          button.classList.add('active-list');
-        });
-      });
-    })
-  };
-  listPro();
+  
 
 
 
 
   const srollUp = () => {
     const btnScrollToTop = document.querySelector('.scroll-up');
+    console.log('fadfadfadfad', btnScrollToTop);
     btnScrollToTop.addEventListener('click', () => {
+      console.log('fadfadfadfad');
       window.scrollTo({
         top: 0,
         behavior: 'smooth'

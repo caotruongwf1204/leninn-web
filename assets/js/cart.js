@@ -181,6 +181,9 @@ if (dataParse.length > 0) {
   submit.style.backgroundColor = '';
   discout.style.backgroundColor = '';
 }
+
+
+
 submit.addEventListener("click", () => {
   console.log("??????????");
   if (dataParse.length > 0) {

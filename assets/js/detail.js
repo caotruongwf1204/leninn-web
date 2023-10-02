@@ -47,21 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
  
 
 
-
+  // add local storage
   const getData = localStorage.getItem('products');
   const dataJson = JSON.parse(getData);
 
@@ -99,6 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
+
+
+
+
+  // quantity
   const addNumbers = () => {
     const minus = document.querySelector('.nav-detail-minus');
     const plus = document.querySelector('.nav-detail-plus');
@@ -126,6 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
   addNumbers();
 
 
+
+
+
+  // size
   const parentElement = document.getElementById("size-select");
   const childElements = parentElement.querySelectorAll("option");
   childElements.forEach((element) => {
@@ -133,6 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
+
+
+
+
+  // add to cart
   const addToCart = document.querySelector('.detail-add');
   addToCart.addEventListener('click', () => {
     console.log('Add to Cart');
