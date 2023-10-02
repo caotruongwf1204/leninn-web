@@ -7,7 +7,7 @@ let listCartItems = [];
 const getData = async () => {
   const urlParams = new URLSearchParams(window.location.search);
   let currentValueInput = 1;
-  document.querySelector('.cart-quantity').innerHTML = dataParse.length;
+  // document.querySelector('.cart-quantity').innerHTML = dataParse.length;
   // console.log("4444444", dataParse[0]);
 
   for (let i = 0; i < dataParse.length; i++) {
@@ -93,6 +93,7 @@ const products = (data) => {
 
 
 
+
     const addNumbers = () => {
       const minus = document.querySelectorAll('.nav-detail-minus');
       const plus = document.querySelectorAll('.nav-detail-plus');
@@ -110,7 +111,9 @@ const products = (data) => {
       minus.forEach((item, index) => {
         item.addEventListener('click', () => {
           const currentValue = parseInt(numbersInput[index].value) || 1;
-          numbersInput[index].value = currentValue - 1;
+          if (currentValue > 1) {
+            numbersInput[index].value = currentValue - 1;
+          }
         });
       })
 
@@ -141,6 +144,25 @@ const products = (data) => {
     })
 
 
+    const removeItemMobile = document.querySelectorAll(".remove-card");
+    removeItemMobile.forEach((item, index) => {
+      item.addEventListener("click", () => {
+        const currentIndex = index;
+        const lasteredArr = dataParse
+
+        for (item of lasteredArr) {
+          if (currentIndex === index) {
+            lasteredArr.splice(index, 1)
+          }
+        }
+        localStorage.clear()
+        localStorage.setItem('products', JSON.stringify(lasteredArr));
+        products(lasteredArr)
+        location.reload();
+      })
+    })
+
+
   });
 };
 
@@ -150,8 +172,32 @@ getData();
 
 
 const submit = document.querySelector(".btn-money");
+const discout = document.querySelector(".btn-discout");
+
+if (dataParse.length > 0) {
+  submit.style.backgroundColor = '#000000';
+  discout.style.backgroundColor = '#000000';
+} else {
+  submit.style.backgroundColor = '';
+  discout.style.backgroundColor = '';
+}
 submit.addEventListener("click", () => {
-  // console.log("??????????");
-  localStorage.clear();
-  window.location.href = "index.html";
+  console.log("??????????");
+  if (dataParse.length > 0) {
+    localStorage.clear();
+    window.location.href = "index.html";
+  }
 });
+
+
+const showText = document.querySelector('.show-text');
+if (dataParse.length > 0) {
+  showText.style.display = 'none';
+} else {
+  showText.style.display = '';
+}
+
+
+
+
+document.querySelector('.cart-quantity').innerHTML = dataParse.length;

@@ -59,7 +59,7 @@ const filterList = (type) => {
 };
 
 const filterAll = document.querySelector("#btn-all");
-console.log("sdfgsdf", filterAll);
+// console.log("sdfgsdf", filterAll);
 filterAll.addEventListener('click', () => {
   renderHtml(listData)
 })
@@ -83,7 +83,3 @@ filterProduct("#btn-pants", "pants");
 filterProduct("#btn-jeans", "jeans");
 filterProduct("#btn-shorts", "short");
 filterProduct("#btn-deck", "deck");
-
-
-
-

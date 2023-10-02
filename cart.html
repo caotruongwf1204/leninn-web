@@ -39,7 +39,8 @@
           </a>
         </div>
         <ul class="menu">
-          <li><a href="/products.html">sản phẩm</a></li>
+          <li><a href="/products.html">sản phẩm</a>
+          </li>
           <li><a href="/sale.html">sale</a></li>
           <li><a href="/gallery.html">thư viện</a></li>
           <li><a href="#">giới thiệu</a></li>
@@ -54,8 +55,15 @@
           <div class="cart-shopping">
             <a href="./cart.html">
               <img src="./assets/images/cart.svg" alt="">
-              <span class="cart-quantity">0</span>
             </a>
+            <span class="cart-quantity">0</span>
+          </div>
+          <div class="menu-mobile">
+            <svg viewBox="0 0 60 32" width="32" height="32" fill="#ffffff">
+              <rect width="60" height="3" rx="5"></rect>
+              <rect y="16" width="60" height="3" rx="5"></rect>
+              <rect y="32" width="60" height="3" rx="5"></rect>
+            </svg>
           </div>
 
           <form class="search-bar">
@@ -65,7 +73,7 @@
         </div>
 
 
-        <div class="icon-mobile">
+        <!-- <div class="icon-mobile">
           <div class="search-mobile">
             <img src="./assets/images/search.svg" alt="">
           </div>
@@ -73,6 +81,7 @@
             <a href="./cart.html">
               <img src="./assets/images/cart.svg" alt="">
             </a>
+            <span class="cart-quantity">0</span>
           </div>
           <div class="menu-mobile">
             <svg viewBox="0 0 60 32" width="32" height="32" fill="#ffffff">
@@ -85,7 +94,7 @@
             <input type="text" class="input-search" placeholder="TÌM KIẾM">
             <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
           </form>
-        </div>
+        </div> -->
         <!-- login -->
         <div class="login-main">
           <div class="popup-login">
@@ -197,21 +206,7 @@
         <!-- menu mobile -->
         <div class="popup-menu-mobile">
           <ul class="wrap-menu-mobile">
-            <li class="products-menu-mobile">sản phẩm
-              <i class="fa-solid fa-caret-down"></i>
-              <!-- sub-menu mobile -->
-              <ul class="sub-menu-mobile">
-                <li>hat</li>
-                <li>tee shirt</li>
-                <li>denim shirts</li>
-                <li>jacket</li>
-                <li>hoodie</li>
-                <li>blazer</li>
-                <li>pants</li>
-                <li>jeans</li>
-                <li>shorts</li>
-                <li>deck</li>
-              </ul>
+            <li class="products-menu-mobile"><a href="/products.html">sản phẩm</a>
             </li>
             <li><a href="/sale.html">sale</a></li>
             <li><a href="/gallery.html">thư viện</a></li>
@@ -249,9 +244,11 @@
                 </tr>
               </thead>
               <tbody id="cart-show-js">
-                
+
+
               </tbody>
             </table>
+            <h5 class="show-text">Hiện không có sản phẩm nào trong giỏ hàng</h5>
             <div class="cart-discount">
               <input class="text-discout" type="text" placeholder="Mã khuyến mãi">
               <button class="btn-discout">Áp dụng</button>

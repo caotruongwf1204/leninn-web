@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
   // poppup menu mobile
   const menuMobile = () => {
     const iconMenu = document.querySelector('.menu-mobile');
@@ -135,9 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // producst list
   const listPro = () => {
     const producstList = document.querySelectorAll('.btn-list');
-   
+
     producstList.forEach((button, index) => {
-      
+
       button.addEventListener('click', () => {
         producstList.forEach((item) => {
           item.classList.remove('active-list');
@@ -148,5 +150,17 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   listPro();
 
-  
+
+
+
+  const srollUp = () => {
+    const btnScrollToTop = document.querySelector('.scroll-up');
+    btnScrollToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+  srollUp()
 });

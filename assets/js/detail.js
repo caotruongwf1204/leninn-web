@@ -5,10 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const API_DETAI = `http://localhost:3000/lenin/${id}`;
 
-  const getData = localStorage.getItem('products');
-  // console.log("OOOOOOOOOOOOO", id)
-  const dataJson = JSON.parse(getData);
-
   const getApi = async (URL_API) => {
     const response = await axios.get(URL_API);
 
@@ -62,20 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  const addToCart = document.querySelector('.detail-add');
-  addToCart.addEventListener('click', () => {
-    // console.log("dataJson", dataJson);
-    addToLocalStorage(id, dataJson, currentValueInput, "M")
-    // console.log("getData", localStorage.getItem('products'))
-    document.querySelector('.cart-quantity').innerHTML = dataJson.length;
-  })
+ 
 
 
 
-
+  const getData = localStorage.getItem('products');
+  const dataJson = JSON.parse(getData);
 
   const addToLocalStorage = (productId, oldListProd, numberItem, size) => {
-    console.log("numberItemnumberItem", numberItem);
+    // console.log("numberItemnumberItem", numberItem);
 
     const listProducts = oldListProd || [];
     // console.log("OOOOOOOOOOOOO", productId)
@@ -142,7 +133,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-
+  const addToCart = document.querySelector('.detail-add');
+  addToCart.addEventListener('click', () => {
+    console.log('Add to Cart');
+    addToLocalStorage(id, dataJson, currentValueInput, "M")
+    document.querySelector('.cart-quantity').innerHTML = dataJson.length;
+  })
 
   const btnCart = document.querySelector('.detail-buy');
   btnCart.addEventListener('click', () => {

@@ -587,6 +587,10 @@ ul {
   cursor: pointer;
 }
 
+.icon .menu-mobile {
+  display: none;
+}
+
 .search-bar {
   position: absolute;
   right: 0;
@@ -619,11 +623,6 @@ ul {
   border: none;
   outline: none;
   background: none;
-}
-
-.icon-mobile {
-  position: relative;
-  cursor: pointer;
 }
 
 .search-bar-mobile {
@@ -659,6 +658,7 @@ ul {
   font-size: 14px;
   border-radius: 10px;
 }
+
 /* === header./end === */
 
 
@@ -902,6 +902,36 @@ hr {
 
 
 
+.scroll-up {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #b2b2b2;
+  border-radius: 10px;
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -925,7 +955,7 @@ hr {
   }
 
 
-  .header .container .icon {
+  .icon .user {
     display: none;
   }
 
@@ -933,7 +963,7 @@ hr {
     display: none;
   }
 
-  .header .container .icon-mobile {
+  .icon .menu-mobile {
     display: flex;
   }
 
@@ -957,17 +987,17 @@ hr {
     padding: 0 20px;
   }
 
-  .header .container .icon {
+  /* .header .container .icon {
     display: none;
-  }
+  } */
 
   .header .container .menu {
     display: none;
   }
 
-  .header .container .icon-mobile {
+  /* .header .container .icon-mobile {
     display: flex;
-  }
+  } */
 
   .popup-menu-mobile.change-show {
     display: block;
