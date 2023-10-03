@@ -1,4 +1,4 @@
-const URL_API = `http://localhost:3000/lenin`;
+const URL_API = `https://api-leninn.vercel.app/lenin`;
 
 const getApi = async (URL_API) => {
   const response = await axios.get(URL_API);

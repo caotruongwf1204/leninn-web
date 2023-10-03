@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const id = urlParams.get('id');
   let currentValueInput = 1;
 
-  const API_DETAI = `http://localhost:3000/lenin/${id}`;
+  const API_DETAI = `https://api-leninn.vercel.app/lenin/${id}`;
 
   const getApi = async (URL_API) => {
     const response = await axios.get(URL_API);

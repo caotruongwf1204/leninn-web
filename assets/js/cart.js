@@ -12,7 +12,7 @@ const getData = async () => {
 
   for (let i = 0; i < dataParse.length; i++) {
     // console.log("dataStorage: ", dataParse[i].id);
-    const API_DETAIL_CART = `http://localhost:3000/lenin/${dataParse[i].id}`;
+    const API_DETAIL_CART = `https://api-leninn.vercel.app/lenin/${dataParse[i].id}`;
     const response = await axios.get(API_DETAIL_CART);
     // console.log("response", typeof response.data.price);
     // console.log("response2", typeof parseInt(dataParse[i].numberProduct));
