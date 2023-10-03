@@ -8,19 +8,18 @@ const getData = async () => {
   const urlParams = new URLSearchParams(window.location.search);
   let currentValueInput = 1;
   // document.querySelector('.cart-quantity').innerHTML = dataParse.length;
-  // console.log("4444444", dataParse[0]);
+
 
   for (let i = 0; i < dataParse.length; i++) {
-    // console.log("dataStorage: ", dataParse[i].id);
     const API_DETAIL_CART = `https://api-leninn.vercel.app/lenin/${dataParse[i].id}`;
     const response = await axios.get(API_DETAIL_CART);
-    // console.log("response", typeof response.data.price);
-    // console.log("response2", typeof parseInt(dataParse[i].numberProduct));
+
+
+
+
+
+    //total
     totalPrice += response.data.price * parseInt(dataParse[i].numberProduct);
-
-
-
-    // console.log("?????????total", totalPrice);
     let total = document.querySelector(".cart-mn span:first-child");
     let totalAll = document.querySelector(".cart-mn-all span:first-child");
     let formattedPrice = new Intl.NumberFormat('vi-VN', {
@@ -28,27 +27,22 @@ const getData = async () => {
       currency: 'VND'
     }).format(totalPrice);
     total.textContent = formattedPrice;
-    // console.log(totalPrice);
     totalAll.textContent = formattedPrice;
 
     response.data.numberItems = dataParse[i].numberProduct;
     response.data.size = dataParse[i].size;
     listCartItems.push(response.data);
   }
-
-  // console.log("555555555", listCartItems);
   products(listCartItems);
 };
 
 
-// console.log("66666666", listCartItems);
+
 const products = (data) => {
   const cartListing = document.querySelector("#cart-show-js");
   let HTML = ``;
 
   data.forEach((item) => {
-    // console.log("item.price", item.price);
-    // console.log("item.numberItems", item.numberItems);
     const number = item.price * item.numberItems;
     const formattedNumber = number.toLocaleString("vi-VN", {
       style: "currency",
@@ -122,75 +116,82 @@ const products = (data) => {
 
 
 
-    const removeItem = document.querySelectorAll(".cart-close");
-    removeItem.forEach((item, index) => {
-      item.addEventListener("click", () => {
-        const currentIndex = index;
-        const lasteredArr = dataParse
-        // console.log("Clicked on item at index:", currentIndex);
-        // console.log("Data for this item:", lasteredArr[index]);
+    // remove item
+    const removeCartItem = () => {
+      const removeItem = document.querySelectorAll(".cart-close");
+      removeItem.forEach((item, index) => {
+        item.addEventListener("click", () => {
+          const currentIndex = index;
+          const lasteredArr = dataParse.slice();
 
-        for (item of lasteredArr) {
-          if (currentIndex === index) {
-            lasteredArr.splice(index, 1)
-            console.log("dfsdsf")
-          }
-        }
-        localStorage.clear()
-        localStorage.setItem('products', JSON.stringify(lasteredArr));
-        products(lasteredArr)
-        location.reload();
-      })
-    })
+          lasteredArr.forEach((item, arrIndex) => {
+            if (currentIndex === arrIndex) {
+              lasteredArr.splice(arrIndex, 1);
+            }
+          });
 
-
-    const removeItemMobile = document.querySelectorAll(".remove-card");
-    removeItemMobile.forEach((item, index) => {
-      item.addEventListener("click", () => {
-        const currentIndex = index;
-        const lasteredArr = dataParse
-
-        for (item of lasteredArr) {
-          if (currentIndex === index) {
-            lasteredArr.splice(index, 1)
-          }
-        }
-        localStorage.clear()
-        localStorage.setItem('products', JSON.stringify(lasteredArr));
-        products(lasteredArr)
-        location.reload();
-      })
-    })
+          localStorage.clear();
+          localStorage.setItem('products', JSON.stringify(lasteredArr));
+          products(lasteredArr);
+          location.reload();
+        });
+      });
 
 
+      // remove item mobile
+      const removeItemMobile = document.querySelectorAll(".remove-card");
+
+      removeItemMobile.forEach((item, index) => {
+        item.addEventListener("click", () => {
+          const currentIndex = index;
+          const lasteredArr = dataParse.slice();
+
+          lasteredArr.forEach((item, arrIndex) => {
+            if (currentIndex === arrIndex) {
+              lasteredArr.splice(arrIndex, 1);
+            }
+          });
+
+          localStorage.clear();
+          localStorage.setItem('products', JSON.stringify(lasteredArr));
+          products(lasteredArr);
+          location.reload();
+        });
+      });
+
+    }
+    removeCartItem()
   });
 };
-
 getData();
 
 
 
+// submit
+const submitItem = () => {
+  const submit = document.querySelector(".btn-money");
+  const discout = document.querySelector(".btn-discout");
 
-const submit = document.querySelector(".btn-money");
-const discout = document.querySelector(".btn-discout");
-
-if (dataParse.length > 0) {
-  submit.style.backgroundColor = '#000000';
-  discout.style.backgroundColor = '#000000';
-} else {
-  submit.style.backgroundColor = '';
-  discout.style.backgroundColor = '';
-}
-
-
-
-submit.addEventListener("click", () => {
-  console.log("??????????");
   if (dataParse.length > 0) {
-    localStorage.clear();
-    window.location.href = "index.html";
+    submit.style.backgroundColor = '#000000';
+    discout.style.backgroundColor = '#000000';
+  } else {
+    submit.style.backgroundColor = '';
+    discout.style.backgroundColor = '';
   }
-});
+
+
+
+  submit.addEventListener("click", () => {
+    console.log("??????????");
+    if (dataParse.length > 0) {
+      localStorage.clear();
+      window.location.href = "index.html";
+    }
+  });
+
+}
+submitItem()
 
 
 const showText = document.querySelector('.show-text');
