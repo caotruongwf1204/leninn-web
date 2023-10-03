@@ -81,9 +81,11 @@ data.forEach((item) => {
 
 const filterList = (type) => {
   let data = [];
-  for (item of listData) {
-    if (item.type === type) data.push(item);
-  }
+  listData.forEach((item) => {
+    if (item.type === type) {
+      data.push(item);
+    }
+  });
   products(data);
 };
 

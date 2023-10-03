@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
- 
+
 
 
   // add local storage
@@ -55,11 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const dataJson = JSON.parse(getData);
 
   const addToLocalStorage = (productId, oldListProd, numberItem, size) => {
-    // console.log("numberItemnumberItem", numberItem);
 
     const listProducts = oldListProd || [];
-    // console.log("OOOOOOOOOOOOO", productId)
-    // console.log("listProducts", listProducts)
     const product = {
       "id": productId,
       "numberProduct": numberItem,
@@ -73,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < listProducts.length; i++) {
           if (listProducts[i].id === productId) {
             listProducts[i].numberProduct = (parseInt(listProducts[i].numberProduct) + parseInt(numberItem)).toString();
+            listProducts[i].size = size;
           }
         }
       } else {
@@ -82,13 +80,21 @@ document.addEventListener('DOMContentLoaded', () => {
       listProducts.push(product)
     }
 
-    // console.log("existingItem", listProducts)
-
     localStorage.setItem('products', JSON.stringify(listProducts));
 
   }
 
-
+  // size
+  const sizeInput = () => {
+    const selectElement = document.getElementById("size-select");
+    selectElement.addEventListener("change", () => {
+      const selectedOption = selectElement.options[selectElement.selectedIndex];
+      const size = selectedOption.value;
+        addToLocalStorage(id, dataJson, currentValueInput, size);
+        console.log(size);
+    });
+  };
+  sizeInput()
 
 
 
@@ -102,9 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Tăng giá trị số trong input
       const currentValue = parseInt(numbersInput.value);
       numbersInput.value = currentValue + 1;
-      // console.log("?????", typeof numbersInput.value)
       currentValueInput = numbersInput.value
-      // console.log('inputValue', currentValueInput)
 
     });
     minus.addEventListener('click', () => {
@@ -112,8 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentValue = parseInt(numbersInput.value);
       if (currentValue > 1) numbersInput.value = currentValue - 1;
       currentValueInput = numbersInput.value
-
-      // console.log('minus', currentValueInput)
     });
 
   };
@@ -123,33 +125,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  // size
-  const parentElement = document.getElementById("size-select");
-  const childElements = parentElement.querySelectorAll("option");
-  childElements.forEach((element) => {
-    console.log(element);
-  });
-
-
-
-
-
-
   // add to cart
   const addToCart = document.querySelector('.detail-add');
   addToCart.addEventListener('click', () => {
-    console.log('Add to Cart');
-    addToLocalStorage(id, dataJson, currentValueInput, "M")
+    console.log("dfsdf", dataJson);
+    addToLocalStorage(id, dataJson, currentValueInput, size)
     document.querySelector('.cart-quantity').innerHTML = dataJson.length;
   })
 
   const btnCart = document.querySelector('.detail-buy');
   btnCart.addEventListener('click', () => {
     console.log("dataJson", dataJson);
-    addToLocalStorage(id, dataJson, currentValueInput, "M")
-
-    // console.log("getData", localStorage.getItem('products'))
     window.location.href = 'cart.html';
+    addToLocalStorage(id, dataJson, currentValueInput, size)
   })
 
 
