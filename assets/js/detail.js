@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const showDetailImg = document.querySelector('#detail-show-img');
   const showDetailInfo = document.querySelector('#detail-show-info');
+  const showNotification = document.querySelector('.show-Notification');
 
 
   const showDetailJs = (item) => {
@@ -43,6 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
         <p>${detailDes3}</p>
         <p>${detailDes4}</p>
       </div>
+    `;
+    showNotification.innerHTML = `
+    <div class="show-text">THÊM VÀO GIỎ HÀNG</div>
+    <div class="show-products">
+      <div class="show-img-product">
+        <img src="${detailImg}" alt="">
+      </div>
+      <span class="show-text-products">${detailTitle}</span>
+    </div>
+    <button class="show-btn-cart"><a href="./cart.html">VÀO GIỎ HÀNG</a></button>
     `;
   }
 
@@ -84,19 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-  // size
-  const sizeInput = () => {
-    const selectElement = document.getElementById("size-select");
-    selectElement.addEventListener("change", () => {
-      const selectedOption = selectElement.options[selectElement.selectedIndex];
-      const size = selectedOption.value;
-        addToLocalStorage(id, dataJson, currentValueInput, size);
-        console.log(size);
-    });
-  };
-  sizeInput()
-
-
 
   // quantity
   const addNumbers = () => {
@@ -124,22 +122,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+  // size
+  const sizeInput = () => {
+    const selectElement = document.getElementById("size-select");
+    selectElement.addEventListener("change", () => {
+      const selectedOption = selectElement.options[selectElement.selectedIndex];
+      const size = selectedOption.value;
+      // addToLocalStorage(id, dataJson, currentValueInput, size);
+      console.log(size);
+    });
+  };
+  sizeInput()
+
+
+
 
   // add to cart
-  const addToCart = document.querySelector('.detail-add');
-  addToCart.addEventListener('click', () => {
-    console.log("dfsdf", dataJson);
-    addToLocalStorage(id, dataJson, currentValueInput, size)
-    document.querySelector('.cart-quantity').innerHTML = dataJson.length;
-  })
+  const addToCart = () => {
+    const addToCartBtn = document.querySelector('.detail-add');
+    addToCartBtn.addEventListener('click', () => {
 
-  const btnCart = document.querySelector('.detail-buy');
-  btnCart.addEventListener('click', () => {
-    console.log("dataJson", dataJson);
-    window.location.href = 'cart.html';
-    addToLocalStorage(id, dataJson, currentValueInput, size)
-  })
+      
+      showNotification.style.top = '100px';
+      showNotification.style.transition = ".3s ease-in-out";
+      setTimeout(() => {
+        showNotification.style.top = '-100px';
+      }, 3000);
 
+
+      const sizeSelect = document.getElementById("size-select");
+      const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+      const size = selectedOption.value;
+      console.log("Size selected:", size);
+      addToLocalStorage(id, dataJson, currentValueInput, size);
+      document.querySelector('.cart-quantity').innerHTML = dataJson.length;
+    });
+
+    const btnCart = document.querySelector('.detail-buy');
+    btnCart.addEventListener('click', () => {
+      window.location.href = 'cart.html';
+      const sizeSelect = document.getElementById("size-select");
+      const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+      const size = selectedOption.value;
+      addToLocalStorage(id, dataJson, currentValueInput, size);
+    });
+  };
+  addToCart();
 
 
   document.querySelector('.cart-quantity').innerHTML = listProducts.length;

@@ -5,11 +5,6 @@ let listData = [];
 const dataStorage = localStorage.getItem("products");
 const dataParse = JSON.parse(dataStorage);
 
-// if (dataParse) {
-//   document.querySelector('.cart-quantity').innerHTML = dataParse.length;
-// } else {
-//   // Xử lý khi không có dữ liệu trong localStorage
-// }
 
 
 const getApi = async (URL_API) => {
@@ -20,9 +15,9 @@ const getApi = async (URL_API) => {
 };
 getApi(URL_API);
 
+
 // products
 const products = (data) => {
-  // renderHtml(data);
   const productsListing = document.querySelector("#listing-product-js");
   let HTML = ``;
 data.forEach((item) => {
@@ -50,34 +45,9 @@ data.forEach((item) => {
   });
 };
 
-// const renderHtml = (listProduct) => {
-//   const productsListing = document.querySelector("#listing-product-js");
 
-//   let HTML = ``;
-//   return listProduct.forEach((item) => {
-//     const priceCall = item.price;
-//     const productPrice = priceCall.toLocaleString("vi-VN", {
-//       style: "currency",
-//       currency: "VND",
-//     });
-//     HTML += `
-//     <div class="col-6 col-sm-6 col-md-3">
-//       <a href="./detail.html?id=${item.id}">
-//         <div class="card">
-//           <img class="card-img" src="${item.img}" alt="">
-//           <div class="card-body">
-//             <div class="content">
-//               <div div class="card-title">${item.title}</div>
-//               <div class="price">${productPrice}</div>
-//             </div>
-//           </div>
-//         </div>
-//       </a>
-//     </div>
-//    `;
-//     productsListing.innerHTML = HTML;
-//   });
-// };
+
+
 
 const filterList = (type) => {
   let data = [];

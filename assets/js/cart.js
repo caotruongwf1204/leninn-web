@@ -18,16 +18,16 @@ const getData = async () => {
 
 
 
-    //total
-    totalPrice += response.data.price * parseInt(dataParse[i].numberProduct);
-    let total = document.querySelector(".cart-mn span:first-child");
-    let totalAll = document.querySelector(".cart-mn-all span:first-child");
-    let formattedPrice = new Intl.NumberFormat('vi-VN', {
-      style: 'currency',
-      currency: 'VND'
-    }).format(totalPrice);
-    total.textContent = formattedPrice;
-    totalAll.textContent = formattedPrice;
+    // //total
+    // totalPrice += response.data.price * parseInt(dataParse[i].numberProduct);
+    // let total = document.querySelector(".cart-mn span:first-child");
+    // let totalAll = document.querySelector(".cart-mn-all span:first-child");
+    // let formattedPrice = new Intl.NumberFormat('vi-VN', {
+    //   style: 'currency',
+    //   currency: 'VND'
+    // }).format(totalPrice);
+    // total.textContent = formattedPrice;
+    // totalAll.textContent = formattedPrice;
 
     response.data.numberItems = dataParse[i].numberProduct;
     response.data.size = dataParse[i].size;
@@ -40,79 +40,110 @@ const getData = async () => {
 
 const products = (data) => {
   const cartListing = document.querySelector("#cart-show-js");
-  let HTML = ``;
 
   data.forEach((item) => {
+    const cartRow = document.createElement("tr");
+    cartRow.classList.add("table-mobile");
+
     const number = item.price * item.numberItems;
-    const formattedNumber = number.toLocaleString("vi-VN", {
-      style: "currency",
-      currency: "VND",
-    });
 
-    HTML += `
-      <tr class="table-mobile">
-                  <td class="table-mobile-products">
-                    <div class="cart-pro-show">
-                      <div class="cart-pro-img">
-                        <img src="${item.img}" alt="">
-                        <span class="remove-card">X</span>
-                      </div>
-                      <div class="cart-pro-title">
-                        <span>${item.title}</span>
-                        <div class="cart-pro-size">
-                          <span>[${item.size}]</span>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <div>
-                    <td>
-                      <div class="detail-quantity">
-                        Số lượng :
-                        <div class="nav-detail">
-                        <button class="nav-detail-minus">-</button>
-                          <input class="detail-input" type="number" readonly value=${item.numberItems}>
-                        <button class="nav-detail-plus">+</button>
-                        </div>
-                      </div>
-                    </td>
-                    <td><div class="cart-price">${formattedNumber}</div></td>
-                    <td class="remove">
-                      <div class="cart-close">
-                        <i class="fa-solid fa-trash-can"></i>
-                      </div>
-      </tr>
+    cartRow.innerHTML = `
+      <td class="table-mobile-products">
+        <div class="cart-pro-show">
+          <div class="cart-pro-img">
+            <img src="${item.img}" alt="">
+            <span class="remove-card">X</span>
+          </div>
+          <div class="cart-pro-title">
+            <span>${item.title}</span>
+            <div class="cart-pro-size">
+              <span>[${item.size}]</span>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="detail-quantity">
+          Số lượng :
+          <div class="nav-detail">
+            <button class="nav-detail-minus">-</button>
+            <input class="detail-input" type="number" readonly value=${item.numberItems}>
+            <button class="nav-detail-plus">+</button>
+          </div>
+        </div>
+      </td>
+      <td class="cart-price"><p>${number}</p></td>
+      <td class="remove">
+        <div class="cart-close">
+          <i class="fa-solid fa-trash-can"></i>
+        </div>
+      </td>
     `;
-    cartListing.innerHTML = HTML;
+
+    cartListing.appendChild(cartRow);
 
 
 
+
+
+    // quantily
 
     const addNumbers = () => {
-      const minus = document.querySelectorAll('.nav-detail-minus');
-      const plus = document.querySelectorAll('.nav-detail-plus');
-      const numbersInput = document.querySelectorAll('.detail-input');
-      // console.log(plus);
-      plus.forEach((item, index) => {
-        item.addEventListener('click', () => {
-          const currentValue = parseInt(numbersInput[index].value) || 1;
-          numbersInput[index].value = currentValue + 1;
-        });
+      const minus = cartRow.querySelector('.nav-detail-minus');
+      const plus = cartRow.querySelector('.nav-detail-plus');
+      const numbersInput = cartRow.querySelector('.detail-input');
+      const cartPrice = cartRow.querySelector('.cart-price p');
 
-      })
+      plus.addEventListener('click', () => {
+        const currentValue = parseInt(numbersInput.value) || 1;
+        numbersInput.value = currentValue + 1;
+        const newNumber = item.price * parseInt(numbersInput.value);
+        // const newFormattedNumber = newNumber.toLocaleString("vi-VN", {
+        //   style: "currency",
+        //   currency: "VND",
+        // });
+        cartPrice.textContent = newNumber;
+
+        updateLocalStorageQuantity(item.id, parseInt(numbersInput.value));
+
+        updateTotal();
+      });
+
+      minus.addEventListener('click', () => {
+        const currentValue = parseInt(numbersInput.value) || 1;
+        if (currentValue > 1) {
+          numbersInput.value = currentValue - 1;
+          const newNumber = item.price * parseInt(numbersInput.value);
+          // const newFormattedNumber = newNumber.toLocaleString("vi-VN", {
+          //   style: "currency",
+          //   currency: "VND",
+          // });
+          cartPrice.textContent = newNumber;
 
 
-      minus.forEach((item, index) => {
-        item.addEventListener('click', () => {
-          const currentValue = parseInt(numbersInput[index].value) || 1;
-          if (currentValue > 1) {
-            numbersInput[index].value = currentValue - 1;
-          }
-        });
-      })
+          updateLocalStorageQuantity(item.id, parseInt(numbersInput.value));
 
+          updateTotal();
+        }
+      });
     };
     addNumbers();
+    
+    
+    const updateLocalStorageQuantity = (itemId, newQuantity) => {
+      const storedData = JSON.parse(localStorage.getItem('products'));
+      const updatedData = storedData.map((product) => {
+        if (product.id === itemId) {
+          product.numberItems = newQuantity;
+        }
+        return product;
+      });
+
+      localStorage.setItem('products', JSON.stringify(updatedData));
+      console.log('updatedData', JSON.stringify(updatedData));
+    };
+
+
 
 
 
@@ -134,8 +165,12 @@ const products = (data) => {
           localStorage.setItem('products', JSON.stringify(lasteredArr));
           products(lasteredArr);
           location.reload();
+          updateTotal();
         });
       });
+
+
+
 
 
       // remove item mobile
@@ -156,14 +191,54 @@ const products = (data) => {
           localStorage.setItem('products', JSON.stringify(lasteredArr));
           products(lasteredArr);
           location.reload();
+          updateTotal();
         });
       });
 
     }
     removeCartItem()
+
+
+
+
+
+
+    //total
+    const updateTotal = () => {
+      let totalPrice = 0;
+      const cartRows = document.querySelectorAll(".table-mobile");
+
+      cartRows.forEach((cartRow) => {
+        const priceElement = cartRow.querySelector(".cart-price p");
+        const quantityElement = cartRow.querySelector(".detail-input");
+        const price = parseFloat(priceElement.textContent.replace("₫", "").replace(",", ""));
+        const quantity = parseInt(quantityElement.value);
+
+        if (!isNaN(price) && !isNaN(quantity)) {
+          totalPrice += price;
+        }
+      });
+
+      const formattedTotalPrice = totalPrice.toLocaleString("vi-VN", {
+        style: "currency",
+        currency: "VND",
+
+      });
+      document.querySelector(".cart-mn span:first-child").textContent = formattedTotalPrice;
+      document.querySelector(".cart-mn-all span:first-child").textContent = formattedTotalPrice;
+    };
+    updateTotal();
+
   });
 };
 getData();
+
+
+
+
+
+
+
 
 
 

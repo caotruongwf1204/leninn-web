@@ -134,21 +134,32 @@ document.addEventListener('DOMContentLoaded', () => {
   tabsLogin();
 
 
+
+
+
+
   
+  
+});
 
 
 
 
-  const srollUp = () => {
-    const btnScrollToTop = document.querySelector('.scroll-up');
-    console.log('fadfadfadfad', btnScrollToTop);
-    btnScrollToTop.addEventListener('click', () => {
-      console.log('fadfadfadfad');
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
+const btnScrollToTop = document.querySelector('.scroll-up');
+const scrollThreshold = 100;
+
+const updateButtonVisibility = () => {
+  if (window.scrollY > scrollThreshold) {
+    btnScrollToTop.style.display = 'flex';
+  } else {
+    btnScrollToTop.style.display = 'none';
   }
-  srollUp()
+};
+window.addEventListener('scroll', updateButtonVisibility);
+
+btnScrollToTop.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
 });
