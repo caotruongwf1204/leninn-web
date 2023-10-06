@@ -97,6 +97,7 @@ const products = (data) => {
       plus.addEventListener('click', () => {
         const currentValue = parseInt(numbersInput.value) || 1;
         numbersInput.value = currentValue + 1;
+        console.log(numbersInput.value);
         const newNumber = item.price * parseInt(numbersInput.value);
         // const newFormattedNumber = newNumber.toLocaleString("vi-VN", {
         //   style: "currency",
@@ -113,6 +114,7 @@ const products = (data) => {
         const currentValue = parseInt(numbersInput.value) || 1;
         if (currentValue > 1) {
           numbersInput.value = currentValue - 1;
+          console.log(numbersInput.value);
           const newNumber = item.price * parseInt(numbersInput.value);
           // const newFormattedNumber = newNumber.toLocaleString("vi-VN", {
           //   style: "currency",
@@ -129,9 +131,10 @@ const products = (data) => {
     };
     addNumbers();
     
-    
+
     const updateLocalStorageQuantity = (itemId, newQuantity) => {
       const storedData = JSON.parse(localStorage.getItem('products'));
+      console.log('hgjhgjghjg', storedData);
       const updatedData = storedData.map((product) => {
         if (product.id === itemId) {
           product.numberItems = newQuantity;
@@ -140,7 +143,7 @@ const products = (data) => {
       });
 
       localStorage.setItem('products', JSON.stringify(updatedData));
-      console.log('updatedData', JSON.stringify(updatedData));
+      
     };
 
 

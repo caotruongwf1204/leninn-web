@@ -33,6 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     showDetailImg.innerHTML = `
       <img class="detail-image" src="${detailImg}" alt="">
+      <div class="slide-img">
+        <img src="${detailImg}" alt="">
+        <img src="${detailImg}" alt="">
+        <img src="${detailImg}" alt="">
+        <img src="${detailImg}" alt="">
+      </div>
     `;
 
     showDetailInfo.innerHTML = `
@@ -122,52 +128,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  // size
-  const sizeInput = () => {
-    const selectElement = document.getElementById("size-select");
-    selectElement.addEventListener("change", () => {
-      const selectedOption = selectElement.options[selectElement.selectedIndex];
-      const size = selectedOption.value;
-      // addToLocalStorage(id, dataJson, currentValueInput, size);
-      console.log(size);
-    });
-  };
-  sizeInput()
 
-
-
-
-  // add to cart
   const addToCart = () => {
     const addToCartBtn = document.querySelector('.detail-add');
+    const sizeSelect = document.getElementById("size-select");
+    const poppupSize = document.querySelector(".poppup-size");
+
     addToCartBtn.addEventListener('click', () => {
-
-      
-      showNotification.style.top = '100px';
-      showNotification.style.transition = ".3s ease-in-out";
-      setTimeout(() => {
-        showNotification.style.top = '-100px';
-      }, 3000);
-
-
-      const sizeSelect = document.getElementById("size-select");
       const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
       const size = selectedOption.value;
-      console.log("Size selected:", size);
-      addToLocalStorage(id, dataJson, currentValueInput, size);
-      document.querySelector('.cart-quantity').innerHTML = dataJson.length;
+
+      if (size === "CHỌN") {
+        poppupSize.style.top = '100px';
+        poppupSize.style.transition = ".3s ease-in-out";
+        setTimeout(() => {
+          poppupSize.style.top = '-100px';
+        }, 3000);
+      } else {
+        showNotification.style.top = '100px';
+        showNotification.style.transition = ".3s ease-in-out";
+        setTimeout(() => {
+          showNotification.style.top = '-100px';
+        }, 3000);
+        addToLocalStorage(id, dataJson, currentValueInput, size);
+        document.querySelector('.cart-quantity').innerHTML = dataJson.length;
+      }
+
     });
 
     const btnCart = document.querySelector('.detail-buy');
     btnCart.addEventListener('click', () => {
-      window.location.href = 'cart.html';
-      const sizeSelect = document.getElementById("size-select");
       const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
       const size = selectedOption.value;
-      addToLocalStorage(id, dataJson, currentValueInput, size);
+
+      if (size === "CHỌN") {
+        poppupSize.style.top = '100px';
+        poppupSize.style.transition = ".3s ease-in-out";
+        setTimeout(() => {
+          poppupSize.style.top = '-100px';
+        }, 3000);
+      } else {
+        window.location.href = 'cart.html';
+        addToLocalStorage(id, dataJson, currentValueInput, size);
+      }
+
     });
   };
   addToCart();
+
+
 
 
   document.querySelector('.cart-quantity').innerHTML = listProducts.length;
