@@ -93,19 +93,22 @@ const products = (data) => {
       const plus = cartRow.querySelector('.nav-detail-plus');
       const numbersInput = cartRow.querySelector('.detail-input');
       const cartPrice = cartRow.querySelector('.cart-price p');
-
-      plus.addEventListener('click', () => {
+      const storedData = JSON.parse(localStorage.getItem("products"));
+      plus.addEventListener("click", () => {
+        const productId = item.id;
         const currentValue = parseInt(numbersInput.value) || 1;
         numbersInput.value = currentValue + 1;
-        console.log(numbersInput.value);
-        const newNumber = item.price * parseInt(numbersInput.value);
-        // const newFormattedNumber = newNumber.toLocaleString("vi-VN", {
-        //   style: "currency",
-        //   currency: "VND",
-        // });
-        cartPrice.textContent = newNumber;
 
-        updateLocalStorageQuantity(item.id, parseInt(numbersInput.value));
+        const newNumber = item.price * parseInt(numbersInput.value);
+
+        for (let i = 0; i < storedData.length; i++) {
+          if (storedData[i].id == productId) {
+            storedData[i].numberProduct = parseInt(numbersInput.value);
+          }
+        }
+
+        localStorage.setItem("products", JSON.stringify(storedData));
+        cartPrice.textContent = newNumber;
 
         updateTotal();
       });
@@ -113,38 +116,27 @@ const products = (data) => {
       minus.addEventListener('click', () => {
         const currentValue = parseInt(numbersInput.value) || 1;
         if (currentValue > 1) {
-          numbersInput.value = currentValue - 1;
-          console.log(numbersInput.value);
-          const newNumber = item.price * parseInt(numbersInput.value);
-          // const newFormattedNumber = newNumber.toLocaleString("vi-VN", {
-          //   style: "currency",
-          //   currency: "VND",
-          // });
-          cartPrice.textContent = newNumber;
+          const productId = item.id;
+        numbersInput.value = currentValue - 1;
 
+        console.log(">>>>>>", storedData);
+        const newNumber = item.price * parseInt(numbersInput.value);
 
-          updateLocalStorageQuantity(item.id, parseInt(numbersInput.value));
+        for (let i = 0; i < storedData.length; i++) {
+          if (storedData[i].id == productId) {
+            storedData[i].numberProduct = parseInt(numbersInput.value);
+          }
+        }
 
+        localStorage.setItem("products", JSON.stringify(storedData));
+        cartPrice.textContent = newNumber;
           updateTotal();
         }
       });
     };
     addNumbers();
-    
 
-    const updateLocalStorageQuantity = (itemId, newQuantity) => {
-      const storedData = JSON.parse(localStorage.getItem('products'));
-      console.log('hgjhgjghjg', storedData);
-      const updatedData = storedData.map((product) => {
-        if (product.id === itemId) {
-          product.numberItems = newQuantity;
-        }
-        return product;
-      });
 
-      localStorage.setItem('products', JSON.stringify(updatedData));
-      
-    };
 
 
 
