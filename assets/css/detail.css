@@ -22,7 +22,7 @@
     width: 100%;
     height: 140px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     position: absolute;
     padding: 10px 0;
     cursor: pointer;
