@@ -140,48 +140,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-      const storedData = JSON.parse(localStorage.getItem("products")) || [];
+      // const storedData = JSON.parse(localStorage.getItem("products")) || [];
 
       // remove item
       const removeCartItem = () => {
         const removeItemButtons = document.querySelectorAll(".cart-close");
 
-        removeItemButtons.forEach((item, index) => {
+        removeItemButtons.forEach((item) => {
           item.addEventListener("click", () => {
-            if (index >= 0 && index < storedData.length) {
-              storedData.splice(index, 1);
-              localStorage.setItem('products', JSON.stringify(storedData));
+            const cartRow = item.closest('.table-mobile');
 
-              const cartRow = document.querySelector(`.table-mobile:nth-child(${index + 1})`);
-              if (cartRow) {
+            if (cartRow) {
+              const index = Array.from(cartRow.parentNode.children).indexOf(cartRow);
+              if (index >= 0) {
                 cartRow.remove();
-              }
 
-              updateTotal();
-              updateCartQuantity();
+                const storedData = JSON.parse(localStorage.getItem("products")) || [];
+                if (index < storedData.length) {
+                  storedData.splice(index, 1);
+                  localStorage.setItem('products', JSON.stringify(storedData));
+                }
+
+                updateTotal();
+                updateCartQuantity();
+              }
             }
           });
         });
 
-
-
-
-
-        // remove item mobile
+        // Remove item for mobile
         const removeItemMobile = document.querySelectorAll(".remove-card");
-        removeItemMobile.forEach((item, index) => {
+        removeItemMobile.forEach((item) => {
           item.addEventListener("click", () => {
-            if (index >= 0 && index < storedData.length) {
-              storedData.splice(index, 1);
-              localStorage.setItem('products', JSON.stringify(storedData));
+            const cartRow = item.closest('.table-mobile');
 
-              const cartRow = document.querySelector(`.table-mobile:nth-child(${index + 1})`);
-              if (cartRow) {
+            if (cartRow) {
+              const index = Array.from(cartRow.parentNode.children).indexOf(cartRow);
+              if (index >= 0) {
                 cartRow.remove();
-              }
 
-              updateTotal();
-              updateCartQuantity();
+                const storedData = JSON.parse(localStorage.getItem("products")) || [];
+                if (index < storedData.length) {
+                  storedData.splice(index, 1);
+                  localStorage.setItem('products', JSON.stringify(storedData));
+                }
+
+                updateTotal();
+                updateCartQuantity();
+              }
             }
           });
         });
@@ -190,6 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       const updateCartQuantity = () => {
+        const storedData = JSON.parse(localStorage.getItem("products")) || [];
         const cartQuantity = document.querySelector('.cart-quantity');
         cartQuantity.innerHTML = storedData.length;
 
@@ -228,13 +235,8 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
       };
-
-
-
-
-
-      removeCartItem();
       updateCartQuantity();
+      removeCartItem();
 
 
 
