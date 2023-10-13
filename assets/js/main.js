@@ -74,71 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   searchBarMobile();
 
-
-
-
-
-  // login
-  const login = () => {
-    const user = document.querySelector('.user');
-    const loginMain = document.querySelector('.login-main');
-    const close = document.querySelector('.close');
-    const loginMobile = document.querySelector('.login-mobile');
-    user.addEventListener('click', () => {
-      loginMain.style.display = 'flex';
-    });
-
-    loginMobile.addEventListener('click', () => {
-      loginMain.style.display = 'flex';
-    });
-
-    close.addEventListener('click', () => {
-      loginMain.style.display = 'none';
-    });
-    loginMain.addEventListener('click', (event) => {
-      if (event.target.classList.contains('login-main') === true) {
-        loginMain.style.display = 'none';
-      }
-    });
-  };
-  login();
-
-
-
-
-  // tabs login
-  const tabsLogin = () => {
-    const btnSign = document.querySelectorAll('.btn-sign');
-    const formLogin = document.querySelectorAll('.form-login');
-
-    btnSign.forEach((button, index) => {
-      // console.log(button);
-      button.addEventListener('click', () => {
-
-        // xoa active button
-        btnSign.forEach((item) => {
-          item.classList.remove('active');
-        });
-
-        // xoa active formLogin
-        formLogin.forEach((value) => {
-          value.classList.remove('active');
-        });
-
-        // them lai
-        button.classList.add('active');
-        formLogin[index].classList.add('active');
-      })
-    })
-  };
-  tabsLogin();
-
-
-
-
-
-
-  
   
 });
 
@@ -163,3 +98,60 @@ btnScrollToTop.addEventListener('click', () => {
     behavior: 'smooth'
   });
 });
+
+
+
+// login
+const login = () => {
+  const user = document.querySelector('.user');
+  const loginMain = document.querySelector('.login-main');
+  const close = document.querySelector('.close');
+  const loginMobile = document.querySelector('.login-mobile');
+  user.addEventListener('click', () => {
+    loginMain.style.display = 'flex';
+  });
+
+  loginMobile.addEventListener('click', () => {
+    loginMain.style.display = 'flex';
+  });
+
+  close.addEventListener('click', () => {
+    loginMain.style.display = 'none';
+  });
+  loginMain.addEventListener('click', (event) => {
+    if (event.target.classList.contains('login-main') === true) {
+      loginMain.style.display = 'none';
+    }
+  });
+};
+login();
+
+
+
+
+// tabs login
+const tabsLogin = () => {
+  const btnSign = document.querySelectorAll('.btn-sign');
+  const formLogin = document.querySelectorAll('.form-login');
+
+  btnSign.forEach((button, index) => {
+    // console.log(button);
+    button.addEventListener('click', () => {
+
+      // xoa active button
+      btnSign.forEach((item) => {
+        item.classList.remove('active');
+      });
+
+      // xoa active formLogin
+      formLogin.forEach((value) => {
+        value.classList.remove('active');
+      });
+
+      // them lai
+      button.classList.add('active');
+      formLogin[index].classList.add('active');
+    })
+  })
+};
+tabsLogin();
