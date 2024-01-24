@@ -1,54 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const dataStorage = localStorage.getItem("products");
-  const dataParse = JSON.parse(dataStorage);
-  // console.log("getDataLocalstorage", dataParse);
+
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+  const cartListing = document.querySelector("#cart-show-js");
   let totalPrice = 0;
-  let listCartItems = [];
 
-  const getData = async () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    let currentValueInput = 1;
-    // document.querySelector('.cart-quantity').innerHTML = dataParse.length;
+  products.forEach((item) => {
+    const cartRow = document.createElement("tr");
+    cartRow.classList.add("table-mobile");
 
 
-    for (let i = 0; i < dataParse.length; i++) {
-      const API_DETAIL_CART = `https://api-leninn.vercel.app/lenin/${dataParse[i].id}`;
-      const response = await axios.get(API_DETAIL_CART);
-
-
-
-
-
-      // //total
-      // totalPrice += response.data.price * parseInt(dataParse[i].numberProduct);
-      // let total = document.querySelector(".cart-mn span:first-child");
-      // let totalAll = document.querySelector(".cart-mn-all span:first-child");
-      // let formattedPrice = new Intl.NumberFormat('vi-VN', {
-      //   style: 'currency',
-      //   currency: 'VND'
-      // }).format(totalPrice);
-      // total.textContent = formattedPrice;
-      // totalAll.textContent = formattedPrice;
-
-      response.data.numberItems = dataParse[i].numberProduct;
-      response.data.size = dataParse[i].size;
-      listCartItems.push(response.data);
-    }
-    products(listCartItems);
-  };
-
-
-
-  const products = (data) => {
-    const cartListing = document.querySelector("#cart-show-js");
-
-    data.forEach((item) => {
-      const cartRow = document.createElement("tr");
-      cartRow.classList.add("table-mobile");
-
-      const number = item.price * item.numberItems;
-
-      cartRow.innerHTML = `
+    cartRow.innerHTML = `
       <td class="table-mobile-products">
         <div class="cart-pro-show">
           <div class="cart-pro-img">
@@ -61,6 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
               <span>[${item.size}]</span>
             </div>
           </div>
+          <td class="product-price"><p>${item.price.toLocaleString("vi-VN", {
+            style: "currency",
+            currency: "VND",
+          })}</p></td>
         </div>
       </td>
       <td>
@@ -68,208 +33,193 @@ document.addEventListener("DOMContentLoaded", () => {
           Số lượng :
           <div class="nav-detail">
             <button class="nav-detail-minus">-</button>
-            <input class="detail-input" type="number" readonly value=${item.numberItems}>
+            <input class="detail-input" type="number" readonly value=${item.quantity}>
             <button class="nav-detail-plus">+</button>
           </div>
         </div>
       </td>
-      <td class="cart-price"><p>${number}</p></td>
+      <td class="cart-price"><p>${(item.price*item.quantity).toLocaleString("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      })}</p></td>
       <td class="remove">
         <div class="cart-close">
           <i class="fa-solid fa-trash-can"></i>
         </div>
       </td>
     `;
-
-      cartListing.appendChild(cartRow);
-
+    cartListing.appendChild(cartRow);
 
 
 
+    // quantily
 
-      // quantily
+    const addNumbers = () => {
+      const minus = cartRow.querySelector('.nav-detail-minus');
+      const plus = cartRow.querySelector('.nav-detail-plus');
+      const numbersInput = cartRow.querySelector('.detail-input');
+      const cartPrice = cartRow.querySelector('.cart-price p');
 
-      const addNumbers = () => {
-        const minus = cartRow.querySelector('.nav-detail-minus');
-        const plus = cartRow.querySelector('.nav-detail-plus');
-        const numbersInput = cartRow.querySelector('.detail-input');
-        const cartPrice = cartRow.querySelector('.cart-price p');
-        const storedData = JSON.parse(localStorage.getItem("products"));
-        plus.addEventListener("click", () => {
+      plus.addEventListener("click", () => {
+        const productId = item.id;
+        const currentValue = parseInt(numbersInput.value) || 1;
+        numbersInput.value = currentValue + 1;
+
+        const newNumber = item.price * parseInt(numbersInput.value);
+
+        for (let i = 0; i < products.length; i++) {
+          if (products[i].id == productId) {
+            products[i].quantity = parseInt(numbersInput.value);
+          }
+        }
+
+        localStorage.setItem("products", JSON.stringify(products));
+        cartPrice.textContent = newNumber;
+        updateTotal()
+
+      });
+
+      minus.addEventListener('click', () => {
+        const currentValue = parseInt(numbersInput.value) || 1;
+        if (currentValue > 1) {
           const productId = item.id;
-          const currentValue = parseInt(numbersInput.value) || 1;
-          numbersInput.value = currentValue + 1;
+          numbersInput.value = currentValue - 1;
 
           const newNumber = item.price * parseInt(numbersInput.value);
 
-          for (let i = 0; i < storedData.length; i++) {
-            if (storedData[i].id == productId) {
-              storedData[i].numberProduct = parseInt(numbersInput.value);
+          for (let i = 0; i < products.length; i++) {
+            ;
+            if (products[i].id == productId) {
+              products[i].quantity = parseInt(numbersInput.value);
             }
           }
 
-          localStorage.setItem("products", JSON.stringify(storedData));
+          localStorage.setItem("products", JSON.stringify(products));
           cartPrice.textContent = newNumber;
+        }
+        updateTotal()
+      });
 
-          updateTotal();
-        });
-
-        minus.addEventListener('click', () => {
-          const currentValue = parseInt(numbersInput.value) || 1;
-          if (currentValue > 1) {
-            const productId = item.id;
-            numbersInput.value = currentValue - 1;
-
-            const newNumber = item.price * parseInt(numbersInput.value);
-
-            for (let i = 0; i < storedData.length; i++) {
-              ;
-              if (storedData[i].id == productId) {
-                storedData[i].numberProduct = parseInt(numbersInput.value);
-              }
-            }
-
-            localStorage.setItem("products", JSON.stringify(storedData));
-            cartPrice.textContent = newNumber;
-            updateTotal();
-          }
-        });
-      };
-      addNumbers();
+    };
+    addNumbers();
 
 
 
+    // remove item
+    const removeCartItem = () => {
+      const removeItemButtons = document.querySelectorAll(".cart-close");
 
-      // const storedData = JSON.parse(localStorage.getItem("products")) || [];
+      removeItemButtons.forEach((item) => {
+        item.addEventListener("click", () => {
+          const cartRow = item.closest('.table-mobile');
 
-      // remove item
-      const removeCartItem = () => {
-        const removeItemButtons = document.querySelectorAll(".cart-close");
+          if (cartRow) {
+            const index = Array.from(cartRow.parentNode.children).indexOf(cartRow);
+            if (index >= 0) {
+              const confirmDelete = confirm("Bạn có chắc muốn xóa sản phẩm này không ?");
 
-        removeItemButtons.forEach((item) => {
-          item.addEventListener("click", () => {
-            const cartRow = item.closest('.table-mobile');
-
-            if (cartRow) {
-              const index = Array.from(cartRow.parentNode.children).indexOf(cartRow);
-              if (index >= 0) {
+              if (confirmDelete) {
                 cartRow.remove();
 
-                const storedData = JSON.parse(localStorage.getItem("products")) || [];
-                if (index < storedData.length) {
-                  storedData.splice(index, 1);
-                  localStorage.setItem('products', JSON.stringify(storedData));
+                if (index < products.length) {
+                  products.splice(index, 1);
+                  localStorage.setItem('products', JSON.stringify(products));
                 }
-
                 updateTotal();
                 updateCartQuantity();
               }
             }
-          });
+          }
         });
+      });
 
-        // Remove item for mobile
-        const removeItemMobile = document.querySelectorAll(".remove-card");
-        removeItemMobile.forEach((item) => {
-          item.addEventListener("click", () => {
-            const cartRow = item.closest('.table-mobile');
+      // Remove item for mobile
+      const removeItemMobile = document.querySelectorAll(".remove-card");
+      removeItemMobile.forEach((item) => {
+        item.addEventListener("click", () => {
+          const cartRow = item.closest('.table-mobile');
 
-            if (cartRow) {
-              const index = Array.from(cartRow.parentNode.children).indexOf(cartRow);
-              if (index >= 0) {
+          if (cartRow) {
+            const index = Array.from(cartRow.parentNode.children).indexOf(cartRow);
+            if (index >= 0) {
+              const confirmDelete = confirm("Bạn có chắc muốn xóa sản phẩm này không ?");
+
+              if (confirmDelete) {
                 cartRow.remove();
 
-                const storedData = JSON.parse(localStorage.getItem("products")) || [];
-                if (index < storedData.length) {
-                  storedData.splice(index, 1);
-                  localStorage.setItem('products', JSON.stringify(storedData));
+                if (index < products.length) {
+                  products.splice(index, 1);
+                  localStorage.setItem('products', JSON.stringify(products));
                 }
-
                 updateTotal();
                 updateCartQuantity();
               }
             }
-          });
-        });
-      };
-
-
-
-      const updateCartQuantity = () => {
-        const storedData = JSON.parse(localStorage.getItem("products")) || [];
-        const cartQuantity = document.querySelector('.cart-quantity');
-        cartQuantity.innerHTML = storedData.length;
-
-
-
-        // show text cart table
-        const showText = document.querySelector('.show-text');
-        if (storedData.length > 0) {
-          showText.style.display = 'none';
-        } else {
-          showText.style.display = '';
-        }
-
-
-
-        // submit
-        const submit = document.querySelector(".btn-money");
-        const discout = document.querySelector(".btn-discout");
-
-        if (storedData.length > 0) {
-          submit.style.backgroundColor = '#000000';
-          discout.style.backgroundColor = '#000000';
-        } else {
-          submit.style.backgroundColor = '';
-          discout.style.backgroundColor = '';
-          updateCartQuantity();
-        }
-
-
-
-        submit.addEventListener("click", () => {
-          console.log("??????????");
-          if (storedData.length > 0) {
-            localStorage.clear();
-            window.location.href = "index.html";
           }
         });
-      };
-      updateCartQuantity();
-      removeCartItem();
+      });
+    };
+    removeCartItem()
 
 
 
 
-      //total
-      const updateTotal = () => {
-        let totalPrice = 0;
-        const cartRows = document.querySelectorAll(".table-mobile");
-
-        cartRows.forEach((cartRow) => {
-          const priceElement = cartRow.querySelector(".cart-price p");
-          const quantityElement = cartRow.querySelector(".detail-input");
-          const price = parseFloat(priceElement.textContent.replace("₫", "").replace(",", ""));
-          const quantity = parseInt(quantityElement.value);
-
-          if (!isNaN(price) && !isNaN(quantity)) {
-            totalPrice += price;
-          }
-        });
-
-        const formattedTotalPrice = totalPrice.toLocaleString("vi-VN", {
-          style: "currency",
-          currency: "VND",
-
-        });
-        document.querySelector(".cart-mn span:first-child").textContent = formattedTotalPrice;
-        document.querySelector(".cart-mn-all span:first-child").textContent = formattedTotalPrice;
-      };
-      updateTotal();
-
-    });
 
 
-  };
-  getData();
+    //total
+    const updateTotal = () => {
+      totalPrice = 0;
+      products.forEach((item) => {
+        const price = item.price;
+        const quantity = item.quantity;
+        if (!isNaN(price) && !isNaN(quantity)) {
+          totalPrice += price * quantity;
+        }
+      });
+      const formattedTotalPrice = totalPrice.toLocaleString("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      });
+      document.querySelector(".cart-mn span:first-child").textContent = formattedTotalPrice;
+      document.querySelector(".cart-mn-all span:first-child").textContent = formattedTotalPrice;
+
+    };
+    updateTotal()
+
+
+
+    const updateCartQuantity = () => {
+      const products = JSON.parse(localStorage.getItem("products")) || [];
+      const cartQuantity = document.querySelector('.cart-quantity');
+      cartQuantity.textContent = products.length;
+      // show text cart table
+      const showText = document.querySelector('.show-text');
+      if (products.length > 0) {
+        showText.style.display = 'none';
+      } else {
+        showText.style.display = '';
+      }
+
+      // submit
+      const submit = document.querySelector(".btn-money");
+      const discout = document.querySelector(".btn-discout");
+
+      if (products.length > 0) {
+        submit.style.backgroundColor = '#000000';
+        discout.style.backgroundColor = '#000000';
+      } else {
+        submit.style.backgroundColor = '';
+        discout.style.backgroundColor = '';
+        updateCartQuantity();
+      }
+      submit.addEventListener("click", () => {
+        console.log("??????????");
+        if (products.length > 0) {
+          localStorage.clear();
+          window.location.href = "index.html";
+        }
+      });
+    };
+    updateCartQuantity();
+  });
 });

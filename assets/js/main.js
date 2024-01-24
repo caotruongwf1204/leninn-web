@@ -1,4 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const searchForm = document.querySelector('.search-bar');
+  const searchInput = document.querySelector('.input-search');
+
+  searchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const search = searchInput.value.trim();
+    window.location.href = `/search.html?q=${search}`;
+  });
+
+  const initialSearch = new URLSearchParams(window.location.search).get('q');
+  searchInput.value = initialSearch || '';
+
+
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+  const cartQuantity = document.querySelector('.cart-quantity');
+  cartQuantity.textContent = products.length;
+
+
   const changeTitleColorOnScroll = () => {
     const title = document.querySelector('.header');
     const scrollPosition = window.scrollY;
@@ -74,9 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   searchBarMobile();
 
-  
-});
 
+});
 
 
 
@@ -135,7 +152,7 @@ const tabsLogin = () => {
   const formLogin = document.querySelectorAll('.form-login');
 
   btnSign.forEach((button, index) => {
-    // console.log(button);
+
     button.addEventListener('click', () => {
 
       // xoa active button

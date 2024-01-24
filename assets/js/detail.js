@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get('id');
-  let currentValueInput = 1;
+
 
   const API_DETAI = `https://api-leninn.vercel.app/lenin/${id}`;
 
@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const response = await axios.get(URL_API);
 
     showDetailJs(response.data);
-    document.querySelector('.cart-quantity').innerHTML = dataJson.length;
   }
   getApi(API_DETAI);
 
@@ -61,123 +60,99 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
     <button class="show-btn-cart"><a href="./cart.html">VÀO GIỎ HÀNG</a></button>
     `;
-  }
 
 
+    // add local storage
+    const addProductToLocalStorage = (item, quantity, size) => {
+      const existingProducts = JSON.parse(localStorage.getItem("products")) || [];
 
+      const existingProductIndex = existingProducts.findIndex(
+        (product) => product.id === item.id
+      );
 
-
-  // add local storage
-  const getData = localStorage.getItem('products');
-  const dataJson = JSON.parse(getData);
-
-  const addToLocalStorage = (productId, oldListProd, numberItem, size) => {
-
-    const listProducts = oldListProd || [];
-    const product = {
-      "id": productId,
-      "numberProduct": numberItem,
-      "size": size
-    }
-    let existingItem;
-    if (listProducts.length > 0) {
-
-      existingItem = oldListProd.find(item => item.id === product.id);
-      if (existingItem) {
-        for (let i = 0; i < listProducts.length; i++) {
-          if (listProducts[i].id === productId) {
-            listProducts[i].numberProduct = (parseInt(listProducts[i].numberProduct) + parseInt(numberItem)).toString();
-            listProducts[i].size = size;
-          }
-        }
+      if (existingProductIndex >= 0) {
+        existingProducts[existingProductIndex].size = size;
+        existingProducts[existingProductIndex].quantity += quantity;
       } else {
-        listProducts.push(product)
+        existingProducts.push({
+          id: item.id,
+          img: detailImg,
+          title: detailTitle,
+          price: priceCall,
+          quantity: quantity,
+          size: size,
+        });
       }
-    } else {
-      listProducts.push(product)
-    }
+      localStorage.setItem("products", JSON.stringify(existingProducts));
+    };
 
-    localStorage.setItem('products', JSON.stringify(listProducts));
+    const addToCart = () => {
+      const addToCartBtn = document.querySelector('.detail-add');
+      const sizeSelect = document.getElementById("size-select");
+      const poppupSize = document.querySelector(".poppup-size");
 
+      addToCartBtn.addEventListener('click', () => {
+        const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+        const size = selectedOption.value;
+
+        if (size === "CHỌN") {
+          poppupSize.style.top = '100px';
+          poppupSize.style.transition = ".3s ease-in-out";
+          setTimeout(() => {
+            poppupSize.style.top = '-100px';
+          }, 3000);
+        } else {
+          showNotification.style.top = '100px';
+          showNotification.style.transition = ".3s ease-in-out";
+          setTimeout(() => {
+            showNotification.style.top = '-100px';
+          }, 3000);
+          addProductToLocalStorage(item, currentValueInput, size);
+        }
+
+      });
+
+      const btnCart = document.querySelector('.detail-buy');
+      btnCart.addEventListener('click', () => {
+        const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
+        const size = selectedOption.value;
+
+        if (size === "CHỌN") {
+          poppupSize.style.top = '100px';
+          poppupSize.style.transition = ".3s ease-in-out";
+          setTimeout(() => {
+            poppupSize.style.top = '-100px';
+          }, 3000);
+        } else {
+          window.location.href = 'cart.html';
+          addProductToLocalStorage(item, currentValueInput, size);
+        }
+
+      });
+    };
+    addToCart();
   }
-
-
   // quantity
+  let currentValueInput = 1;
+
   const addNumbers = () => {
     const minus = document.querySelector('.nav-detail-minus');
     const plus = document.querySelector('.nav-detail-plus');
     const numbersInput = document.querySelector('.detail-input');
 
     plus.addEventListener('click', () => {
-      // Tăng giá trị số trong input
       const currentValue = parseInt(numbersInput.value);
       numbersInput.value = currentValue + 1;
-      currentValueInput = numbersInput.value
-
+      currentValueInput = parseInt(numbersInput.value);
     });
+
     minus.addEventListener('click', () => {
-      // Giảm giá trị số trong input
       const currentValue = parseInt(numbersInput.value);
-      if (currentValue > 1) numbersInput.value = currentValue - 1;
-      currentValueInput = numbersInput.value
+      if (currentValue > 1) {
+        numbersInput.value = currentValue - 1;
+        currentValueInput = parseInt(numbersInput.value);
+      }
     });
-
   };
   addNumbers();
-
-
-
-
-
-  const addToCart = () => {
-    const addToCartBtn = document.querySelector('.detail-add');
-    const sizeSelect = document.getElementById("size-select");
-    const poppupSize = document.querySelector(".poppup-size");
-
-    addToCartBtn.addEventListener('click', () => {
-      const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
-      const size = selectedOption.value;
-
-      if (size === "CHỌN") {
-        poppupSize.style.top = '100px';
-        poppupSize.style.transition = ".3s ease-in-out";
-        setTimeout(() => {
-          poppupSize.style.top = '-100px';
-        }, 3000);
-      } else {
-        showNotification.style.top = '100px';
-        showNotification.style.transition = ".3s ease-in-out";
-        setTimeout(() => {
-          showNotification.style.top = '-100px';
-        }, 3000);
-        addToLocalStorage(id, dataJson, currentValueInput, size);
-        document.querySelector('.cart-quantity').innerHTML = dataJson.length;
-      }
-
-    });
-
-    const btnCart = document.querySelector('.detail-buy');
-    btnCart.addEventListener('click', () => {
-      const selectedOption = sizeSelect.options[sizeSelect.selectedIndex];
-      const size = selectedOption.value;
-
-      if (size === "CHỌN") {
-        poppupSize.style.top = '100px';
-        poppupSize.style.transition = ".3s ease-in-out";
-        setTimeout(() => {
-          poppupSize.style.top = '-100px';
-        }, 3000);
-      } else {
-        window.location.href = 'cart.html';
-        addToLocalStorage(id, dataJson, currentValueInput, size);
-      }
-
-    });
-  };
-  addToCart();
-
-
-
-
-  document.querySelector('.cart-quantity').innerHTML = listProducts.length;
 });

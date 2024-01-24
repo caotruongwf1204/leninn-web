@@ -1,17 +1,13 @@
-const URL_API = `https://api-leninn.vercel.app/lenin`;
-let listData = [];
+const urlParams = new URLSearchParams(window.location.search);
+type = urlParams.get("type");
 
-
-const dataStorage = localStorage.getItem("products");
-const dataParse = JSON.parse(dataStorage);
-
+const URL_API = `https://api-leninn.vercel.app/lenin/${ type ? `?type=${type}` : ""}`;
 
 
 const getApi = async (URL_API) => {
   const response = await axios.get(URL_API);
   listData = response.data;
   products(response.data);
-  document.querySelector('.cart-quantity').innerHTML = dataParse.length;
 };
 getApi(URL_API);
 
@@ -20,7 +16,7 @@ getApi(URL_API);
 const products = (data) => {
   const productsListing = document.querySelector("#listing-product-js");
   let HTML = ``;
-data.forEach((item) => {
+  data.forEach((item) => {
     const priceCall = item.price;
     const productPrice = priceCall.toLocaleString("vi-VN", {
       style: "currency",
@@ -45,58 +41,27 @@ data.forEach((item) => {
   });
 };
 
-
-
-
-
-const filterList = (type) => {
-  let data = [];
-  listData.forEach((item) => {
-    if (item.type === type) {
-      data.push(item);
-    }
-  });
-  products(data);
-};
-
-const filterAll = document.querySelector("#btn-all");
-// console.log("sdfgsdf", filterAll);
-filterAll.addEventListener('click', () => {
-  products(listData)
-})
-
-
-const filterProduct = (itemName, indexName) => {
-  const filterBtn = document.querySelector(`${itemName}`);
-  filterBtn.addEventListener("click", () => {
-    filterList(indexName);
-  });
-};
-
-filterProduct("#btn-hat", "hat");
-filterProduct("#btn-tee", "tee");
-filterProduct("#btn-denim", "shirt");
-filterProduct("#btn-jacket", "jacket");
-filterProduct("#btn-hoodie", "hoodie");
-filterProduct("#btn-blazer", "blazer");
-filterProduct("#btn-pants", "pants");
-filterProduct("#btn-jeans", "jeans");
-filterProduct("#btn-shorts", "short");
-filterProduct("#btn-deck", "deck");
-
-
 // producst list
 const listPro = () => {
-  const producstList = document.querySelectorAll('.btn-list');
+  const productsList = document.querySelectorAll('.btn-list');
+  const currentType = getCurrentTypeFromURL();
 
-  producstList.forEach((button, index) => {
+  productsList.forEach(link => {
+    const type = link.getAttribute('href').split('=')[1];
+    const newHref = (type !== undefined) ? `/products.html?type=${type}` : '/products.html';
+    link.setAttribute('href', newHref);
 
-    button.addEventListener('click', () => {
-      producstList.forEach((item) => {
-        item.classList.remove('active-list');
-        button.classList.add('active-list');
-      });
-    });
-  })
+    if ((type === currentType && type !== undefined) || (type === undefined && currentType === '/products.html')) {
+      link.classList.add('active-list');
+    } else {
+      link.classList.remove('active-list');
+    }
+  });
 };
+
+const getCurrentTypeFromURL = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('type') || '/products.html';
+};
+
 listPro();

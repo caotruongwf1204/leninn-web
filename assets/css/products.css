@@ -30,39 +30,17 @@
     font-weight: 600;
     opacity: .4;
     cursor: pointer;
+    color: #000;
+    text-decoration: none;
 }
 .btn-list:hover {
     color: #000000;
     opacity: .8;
+    border-bottom: 3px solid #000000;
+
 }
 .active-list {
     opacity: 1;
     border-bottom: 3px solid #000000;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media screen and (max-width: 768px) {
-    .products-list {
-        display: block;
-    } 
-}
-@media screen and (max-width: 480px) {
-    .products-list {
-        display: block;
-    } 
-}

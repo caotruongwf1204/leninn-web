@@ -70,7 +70,14 @@ span {
     font-size: 14px;
 }
 
-.cart-price p{
+.cart-price p {
+    font-weight: 600;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.product-price p {
     font-weight: 600;
     height: 100px;
     display: flex;
