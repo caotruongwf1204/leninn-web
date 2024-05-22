@@ -19,7 +19,7 @@ env:
   CONTAINER_NAME: lenin-wed
   DOCKERFILE_PATH: ./Dockerfile
   DOCKER_NETWORK: acsta-net
-  HOST_PORT: 3095
+  HOST_PORT: 5000
   CONTAINER_PORT: 80
 
 
