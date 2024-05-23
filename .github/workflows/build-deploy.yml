@@ -15,8 +15,8 @@ env:
   SSH_HOST: 13.214.181.89
   SSH_USERNAME: root
   SSH_PORT: 22
-  IMAGE_NAME: lenninn-wed
-  CONTAINER_NAME: lenin-wed
+  IMAGE_NAME: lenninn-web
+  CONTAINER_NAME: lenin-web
   DOCKERFILE_PATH: ./Dockerfile
   DOCKER_NETWORK: acsta-net
   HOST_PORT: 5000
